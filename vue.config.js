@@ -1,37 +1,26 @@
-const ImageminMozjpeg       = require('imagemin-mozjpeg')
-// const imageminPngquant      = require('imagemin-pngquant')
+const ImageminMozjpeg = require('imagemin-mozjpeg')
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
-const path                  = require('path')
+const path = require('path')
 
-// const pack = require('./package.json')
+const pack = require('./package.json')
 
 const event = process.env.npm_lifecycle_event ? process.env.npm_lifecycle_event : ''
 const isProd = event === 'build'
 
 const root = {
-  src: (slug) => {
-    return path.resolve(__dirname, `src/${slug}`)
-  },
-  assets: (slug) => {
-    return path.resolve(__dirname, `src/assets/${slug}`)
-  },
-  components: (slug) => {
-    return path.resolve(__dirname, `src/components/${slug}`)
-  }
+  assets: (slug) => path.resolve(__dirname, `src/assets/${slug}`),
+  components: () => path.resolve(__dirname, 'src/components')
 }
 
 module.exports = {
-  publicPath: isProd ? `/gp_restaurant/` : '/',
+  publicPath: isProd ? `/${pack.name}/` : '/',
   configureWebpack: {
     resolve: {
       alias: {
-        'img': root.assets('img'),
-        'js': root.assets('js'),
-        'scss': root.assets('scss'),
-        'blocks': root.components('blocks'),
-        'layouts': root.components('layouts'),
-        'modules': root.components('modules'),
-        'views': root.src('views')
+        img: root.assets('img'),
+        js: root.assets('js'),
+        scss: root.assets('scss'),
+        components: root.components()
       }
     },
     plugins: [
@@ -49,9 +38,10 @@ module.exports = {
     loaderOptions: {
       scss: {
         additionalData: `
-          @import '~scss/base/_variables.scss';
+          @import 'modularscale';
+          @import '~scss/base/variables.scss';
           @import '~scss/functions/_converter.scss';
-          @import '~scss/mixins/_breakpoints.scss';
+          // @import '~scss/mixins/_breakpoints.scss';
         `
       }
     }

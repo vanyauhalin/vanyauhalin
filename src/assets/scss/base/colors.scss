@@ -1,0 +1,39 @@
+/**
+ * =============================================================================
+ * Colors
+ * =============================================================================
+**/
+
+:root {
+  /**
+   * Color system
+   * ---------------------------------------------------------------------------
+  **/
+
+  // White
+  --cl-white: rgb(255, 255, 255);
+  --cl-white-light: rgba(255, 255, 255, 0.35);
+
+  // Navy
+  --cl-navy: rgb(36, 42, 49);
+  --cl-navy-01: rgb(58, 64, 75);
+  --cl-navy-02: rgb(45, 50, 59);
+  --cl-navy-light-01: rgba(81, 87, 101, 0.1);
+  --cl-navy-light-02: rgba(81, 87, 101, 0.35);
+  --cl-navy-light-03: rgba(81, 87, 101, 0.85);
+
+  /**
+   * Palette
+   * ---------------------------------------------------------------------------
+  **/
+
+  // Neutral colors
+  --cl-neutral-01: var(--cl-white);
+  --cl-neutral-02: var(--cl-navy-01);
+  --cl-neutral-03: var(--cl-navy-02);
+  --cl-neutral-04: var(--cl-navy);
+  --cl-neutral-light-01: var(--cl-white-light);
+  --cl-neutral-light-02: var(--cl-navy-light-01);
+  --cl-neutral-light-03: var(--cl-navy-light-02);
+  --cl-neutral-light-04: var(--cl-navy-light-03);
+}

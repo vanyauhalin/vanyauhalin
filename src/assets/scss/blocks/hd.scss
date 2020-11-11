@@ -1,0 +1,32 @@
+/**
+ * =============================================================================
+ * Headlines
+ * =============================================================================
+**/
+
+.hd {
+  color: var(--cl-neutral-04);
+  font-weight: 600;
+
+  &.hd_l_1 {
+    $fs: ms(5);
+
+    letter-spacing: converter(15, $fs);
+    font-size: $fs;
+  }
+
+  &.hd_l_2 {
+    $fs: ms(4);
+
+    letter-spacing: converter(14, $fs);
+    font-size: $fs;
+  }
+
+  &.hd_l_3 {
+    $fs: ms(2);
+
+    letter-spacing: converter(12, $fs);
+    color: var(--cl-neutral-02);
+    font-size: $fs;
+  }
+}

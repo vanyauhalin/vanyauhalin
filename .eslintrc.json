@@ -9,15 +9,15 @@
   "extends": [
     "eslint:recommended",
     "airbnb-base",
-    "plugin:vue/essential",
-    "@vue/prettier"
+    "plugin:vue/essential"
+    // "@vue/prettier"
   ],
   "rules": {
     // Possible Errors
     "no-await-in-loop": "error",
     "no-extra-parens": "error",
     "no-template-curly-in-string": "error",
-    "no-unreachable-loop": "error",
+    // "no-unreachable-loop": "error",
     "require-atomic-updates": "error",
 
     // Best Practices
@@ -26,7 +26,7 @@
     }],
     "curly": ["error", "multi"],
     "default-case": "error",
-    "default-case-last": "error",
+    // "default-case-last": "error",
     "default-param-last": "error",
     "no-empty-function": "error",
     "no-eq-null": "error",
@@ -57,11 +57,12 @@
     "no-use-before-define": "error",
 
     // Stylistic Issues
-    "array-bracket-newline": ["error", {
-      "multiline": true,
-      "minItems": 2
-    }],
+    // "array-bracket-newline": ["error", {
+    //   "multiline": true,
+    //   "minItems": 2
+    // }],
     "capitalized-comments": "error",
+    "comma-dangle": ["error", "never"],
     "func-name-matching": "error",
     "func-names": ["error", "always"],
     "function-call-argument-newline": ["error", "never"],
@@ -79,7 +80,7 @@
     "no-negated-condition": "error",
     "operator-assignment": ["error", "always"],
     "semi": ["error", "never"],
-    "sort-keys": "error",
+    // "sort-keys": "error",
     "space-unary-ops": "error",
     "switch-colon-spacing": "error",
     "template-tag-spacing": ["error", "always"],
@@ -87,6 +88,11 @@
     // ECMAScript 6
     "no-useless-computed-key": "error",
     "no-useless-rename": "error",
-    "sort-imports": "error"
+    // "sort-imports": "error",
+
+    // Other
+    "import/no-unresolved": [2, {
+      "ignore": ["assets", "components"]
+    }]
   }
 }
