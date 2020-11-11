@@ -1,0 +1,50 @@
+{
+  "name": "yansultanov",
+  "version": "2.0.0",
+  "private": true,
+  "description": "The website for posting information about projects with my participation, as well as for posting information about me.",
+  "keywords": [
+    "vuejs",
+    "vuex"
+  ],
+  "homepage": "http://yansultanov.github.io",
+  "bugs": {
+    "url": "https://github.com/yansultanov/yansultanov/issues"
+  },
+  "license": "UNLICENSED",
+  "author": {
+    "name": "Ivan Ukhalin",
+    "url": "https://github.com/yansultanov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yansultanov/yansultanov"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^6.2.2",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.0.5",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
