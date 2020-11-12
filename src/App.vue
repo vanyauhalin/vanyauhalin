@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app_inner">
+    <div class="app__inner">
       <aside class="app__navbar">
         <AppNavbar />
       </aside>
@@ -20,24 +20,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app_inner {
-  display: flex;
+.app__inner {
   position: fixed;
   top: 0;
   left: 0;
+
+  display: flex;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   height: 100%;
-  overflow: hidden;
-
-  > .a,
-  + .t {
-    color: blue;
-  }
-
-  &.test {
-    color: red;
-  }
 }
 </style>

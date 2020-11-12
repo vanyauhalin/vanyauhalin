@@ -38,10 +38,8 @@ module.exports = {
     loaderOptions: {
       scss: {
         additionalData: `
-          @import 'modularscale';
           @import '~scss/base/variables.scss';
-          @import '~scss/functions/_converter.scss';
-          // @import '~scss/mixins/_breakpoints.scss';
+          @import '~scss/functions/converter.scss';
         `
       }
     }

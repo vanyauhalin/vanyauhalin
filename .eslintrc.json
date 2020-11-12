@@ -21,10 +21,10 @@
     "require-atomic-updates": "error",
 
     // Best Practices
-    "consistent-return": ["error", {
-      "treatUndefinedAsUnspecified": true
-    }],
-    "curly": ["error", "multi"],
+    // "consistent-return": ["error", {
+    //   "treatUndefinedAsUnspecified": true
+    // }],
+    "curly": ["error", "multi-line"],
     "default-case": "error",
     // "default-case-last": "error",
     "default-param-last": "error",
@@ -36,14 +36,16 @@
     "no-magic-numbers": "error",
     "no-multi-spaces": "error",
     "no-multi-str": "error",
-    "no-new": "error",
+    // "no-new": "error",
     "no-octal-escape": "error",
     "no-return-assign": "error",
     "no-return-await": "error",
     "no-self-compare": "error",
     "no-throw-literal": "error",
     "no-unmodified-loop-condition": "error",
-    "no-unused-expressions": "error",
+    "no-unused-expressions": ["error", {
+      "allowTernary": true
+    }],
     "no-useless-concat": "error",
     "no-useless-return": "error",
     "prefer-promise-reject-errors": "error",
@@ -72,7 +74,11 @@
     "lines-around-comment": ["error", {
       "beforeBlockComment": true
     }],
-    "multiline-comment-style": ["error", "starred-block"],
+    "max-len": ["error", {
+      "code": 120,
+      "ignorePattern": "<path([\\s\\S]*?)/>"
+    }],
+    // "multiline-comment-style": ["error", "starred-block"],
     "multiline-ternary": ["error", "always-multiline"],
     "new-parens": "error",
     "no-bitwise": "error",
@@ -91,8 +97,12 @@
     // "sort-imports": "error",
 
     // Other
-    "import/no-unresolved": [2, {
-      "ignore": ["assets", "components"]
+    "import/extensions": ["error", "ignorePackages"],
+    "import/no-unresolved": ["error", {
+      "ignore": ["img", "js", "scss", "components"]
+    }],
+    "import/order": ["error", {
+      "newlines-between": "always-and-inside-groups"
     }]
   }
 }

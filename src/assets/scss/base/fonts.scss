@@ -2,7 +2,7 @@
  * =============================================================================
  * Fonts
  * =============================================================================
-**/
+ */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 
@@ -10,4 +10,5 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-family: 'Montserrat', sans-serif;
+  font-size: $fs-base;
 }
