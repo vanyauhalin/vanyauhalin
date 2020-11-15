@@ -1,6 +1,7 @@
+const path = require('path')
+
 const ImageminMozjpeg = require('imagemin-mozjpeg')
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
-const path = require('path')
 
 const pack = require('./package.json')
 
@@ -17,9 +18,9 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        img: root.assets('img'),
-        js: root.assets('js'),
-        scss: root.assets('scss'),
+        images: root.assets('images'),
+        scripts: root.assets('scripts'),
+        styles: root.assets('styles'),
         components: root.components()
       }
     },
@@ -37,10 +38,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `
-          @import '~scss/base/variables.scss';
-          @import '~scss/functions/converter.scss';
-        `
+        additionalData: '@import "~styles/additional-data.scss";'
       }
     }
   }
