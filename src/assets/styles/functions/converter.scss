@@ -1,0 +1,11 @@
+/**
+ * =============================================================================
+ * Simplified Photoshop (XD, Figma ...) unit converter
+ * =============================================================================
+ *
+ * Author: https://benmarshall.me/convert-photoshop-letter-spacing-to-css
+ */
+
+@function converter($unit, $base) {
+  @return ($unit * $base) / 1000;
+}
