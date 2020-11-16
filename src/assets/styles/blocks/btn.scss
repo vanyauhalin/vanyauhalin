@@ -5,9 +5,11 @@
  */
 
 .btn {
-  background-color: var(--cl-neutral-04);
-  padding: 11px 17px;
+  font-size: $fs-5;
+
   min-width: 140px;
+  padding: 11px 17px;
+
   color: var(--cl-neutral-01);
-  font-size: ms(-3);
+  background-color: var(--cl-neutral-04);
 }

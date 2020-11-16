@@ -33,7 +33,7 @@
     "no-implied-eval": "error",
     "no-invalid-this": "error",
     "no-lone-blocks": "error",
-    "no-magic-numbers": "error",
+    "no-magic-numbers": "warn",
     "no-multi-spaces": "error",
     "no-multi-str": "error",
     // "no-new": "error",
@@ -74,10 +74,10 @@
     "lines-around-comment": ["error", {
       "beforeBlockComment": true
     }],
-    // "max-len": ["error", {
-    //   "code": 120,
-    //   "ignorePattern": "<path([\\s\\S]*?)/>"
-    // }],
+    "max-len": ["warn", {
+      "code": 120
+      // "ignorePattern": "<path([\\s\\S]*?)/>"
+    }],
     // "multiline-comment-style": ["error", "starred-block"],
     "multiline-ternary": ["error", "always-multiline"],
     "new-parens": "error",

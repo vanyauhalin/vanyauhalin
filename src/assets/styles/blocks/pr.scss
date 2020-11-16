@@ -5,15 +5,18 @@
  */
 
 .pr {
-  color: var(--cl-neutral-light-04);
   font-weight: 500;
+
+  color: var(--cl-neutral-light-04);
 
   &.pr_l_1 {
     font-size: $fs-4;
+    line-height: 19px;
   }
 
   &.pr_l_2 {
     font-size: $fs-5;
+    line-height: 15px;
   }
 
   &.pr_highlighted {

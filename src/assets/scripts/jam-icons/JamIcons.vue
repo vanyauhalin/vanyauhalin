@@ -1,20 +1,14 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    :aria-labelledby="name"
     :viewBox="viewBox"
     :width="width"
     :height="height"
     preserveAspectRatio="xMinYMin"
     role="presentation"
   >
-    <title
-      :id="`jam-${name}`"
-      lang="en"
-    >
-      jam-{{ name }}
-    </title>
     <g
+      :id="id"
       :fill="fill"
       v-html="icon"
     />
@@ -27,7 +21,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: 'undefined'
+      default: ''
     },
     width: {
       type: [String, Number],
@@ -36,6 +30,10 @@ export default {
     height: {
       type: [String, Number],
       default: 24
+    },
+    id: {
+      type: String,
+      default: ''
     },
     fill: {
       type: String,
