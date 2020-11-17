@@ -5,7 +5,7 @@
         <h1 class="hd hd_l_1">
           {{ title }}
         </h1>
-        <div class="about__ctx">
+        <div :class="ctx.modification">
           <p
             class="pr pr_l_1"
             v-for="(item, index) in ctxData"
@@ -21,7 +21,7 @@
           @click="changeCtx"
         >
           <JamIcons
-            :id="`about__toggle_icon_${toggle.icon.current}`"
+            :id="`${toggle.modification}_${toggle.icon.current}`"
             :name="toggle.icon.current"
             width="19"
             height="19"
@@ -50,24 +50,25 @@
 import { gsap } from 'gsap'
 import { mapGetters } from 'vuex'
 
-const icon = {
-  open: 'chevron-down',
-  close: 'close'
-}
-
 export default {
   name: 'SectionAbout',
   data() {
     return {
-      ctx: {},
+      ctx: {
+        modification: 'about__ctx',
+        length: {
+          min: 2
+        }
+      },
       toggle: {
         status: true,
+        modification: 'about__toggle_icon',
         icon: {
-          current: icon.open,
-          open: icon.open,
-          close: icon.close
+          current: 'chevron-down',
+          close: 'close'
         }
-      }
+      },
+      transitionDuration: 0.9
     }
   },
   computed: {
@@ -78,87 +79,115 @@ export default {
   },
   mounted() {
     this.setCtx()
+    this.setToggle()
+
+    this.ctx.length.max > this.ctx.length.min
+      ? this.closeCtx({ animation: false })
+      : this.toggle.status = false
   },
   methods: {
     setCtx() {
-      const lengthMin = 2
-      const child = document.querySelector(`[data-pr-index="${lengthMin}"]`)
+      const child = document.querySelector(`[data-pr-index="${this.ctx.length.min}"]`)
       const childRect = child.getBoundingClientRect()
-      const el = document.getElementsByClassName('about__ctx')[0]
+      const el = document.getElementsByClassName(this.ctx.modification)[0]
       const elRect = el.getBoundingClientRect()
       const elHeightMin = elRect.height - (elRect.bottom - childRect.bottom)
 
       this.ctx = {
+        ...JSON.parse(JSON.stringify(this.ctx)),
+        length: {
+          ...JSON.parse(JSON.stringify(this.ctx.length)),
+          max: this.ctxData.length,
+          current: this.ctx.length.min
+        },
         el,
         height: {
           min: elHeightMin
-        },
-        length: {
-          current: lengthMin,
-          min: lengthMin,
-          max: this.ctxData.length
         }
       }
+    },
+    setToggle() {
+      this.toggle = {
+        ...JSON.parse(JSON.stringify(this.toggle)),
+        icon: {
+          ...JSON.parse(JSON.stringify(this.toggle.icon)),
+          open: this.toggle.icon.current
+        }
+      }
+    },
+    ctxTransition({ reverse = false } = {}) {
+      gsap.to(this.ctx.el, {
+        height: () => (reverse ? this.ctx.height.min : 'auto'),
+        duration: this.transitionDuration
+      })
+    },
+    toggleTransition({ reverse = false } = {}) {
+      const targets = {}
 
-      this.ctx.length.max > this.ctx.length.min
-        ? this.closeCtx({
-          animation: false
+      if (reverse) {
+        targets.first = `${this.toggle.modification}_${this.toggle.icon.close}`
+        targets.second = `${this.toggle.modification}_${this.toggle.icon.open}`
+      } else {
+        targets.first = `${this.toggle.modification}_${this.toggle.icon.open}`
+        targets.second = `${this.toggle.modification}_${this.toggle.icon.close}`
+      }
+
+      const options = {
+        opacity: {
+          enter: 1,
+          leave: 0
+        },
+        y: {
+          enter: 0,
+          leave: 3
+        },
+        duration: this.transitionDuration / Object.keys(targets).length
+      }
+
+      gsap.fromTo(document.getElementById(targets.first), {
+        opacity: options.opacity.enter,
+        y: options.y.enter
+      }, {
+        opacity: options.opacity.leave,
+        y: options.y.leave,
+        duration: options.duration
+      }).then(() => {
+        reverse
+          ? this.toggle.icon.current = this.toggle.icon.open
+          : this.toggle.icon.current = this.toggle.icon.close
+      }).then(() => {
+        gsap.fromTo(document.getElementById(targets.second), {
+          opacity: options.opacity.leave,
+          y: -options.y.leave
+        }, {
+          opacity: options.opacity.enter,
+          y: options.y.enter,
+          duration: options.duration
         })
-        : this.toggle.status = false
+      })
     },
     openCtx() {
-      gsap.fromTo(this.ctx.el, {
-        height: this.ctx.height.min
-      }, {
-        height: 'auto',
-        duration: 0.9
-      })
-
-      const icon2 = document.getElementById('about__toggle_icon_chevron-down')
-
-      gsap.fromTo(icon2, {
-        opacity: 1
-      }, {
-        opacity: 0,
-        duration: 0.9
-      }).then(() => {
-        this.toggle.icon.current = this.toggle.icon.close
-      }).then(() => {
-        const icon3 = document.getElementById('about__toggle_icon_close')
-
-        console.log(icon3)
-
-        gsap.fromTo(icon3, {
-          opacity: 0
-        }, {
-          opacity: 1,
-          duration: 0.9
-        })
-      })
+      this.ctxTransition()
+      this.toggleTransition()
 
       this.ctx.length.current = this.ctx.length.max
     },
-    closeCtx(options) {
-      if (options.animation) {
-        gsap.fromTo(this.ctx.el, {
-          height: 'auto'
-        }, {
-          height: this.ctx.height.min,
-          duration: 0.9
-        })
+    closeCtx({ animation = true } = {}) {
+      if (animation) {
+        this.ctxTransition({ reverse: true })
+        this.toggleTransition({ reverse: true })
       } else {
         this.ctx.el.setAttribute('style', `height: ${this.ctx.height.min}px`)
+
+        this.toggle.icon.current = this.toggle.icon.open
       }
 
-      this.toggle.icon.current = this.toggle.icon.open
       this.ctx.length.current = this.ctx.length.min
     },
     changeCtx() {
       this.ctx.length.current === this.ctx.length.min
         ? this.openCtx()
-        : this.closeCtx({
-          animation: true
-        })
+        : this.closeCtx()
     }
   }
 }
