@@ -138,11 +138,12 @@ export default {
           leave: 0
         },
         y: {
-          enter: 0,
-          leave: 3
+          enter: 0
         },
         duration: this.transitionDuration / Object.keys(targets).length
       }
+
+      reverse ? options.y.leave = -3 : options.y.leave = 3
 
       gsap.fromTo(document.getElementById(targets.first), {
         opacity: options.opacity.enter,
