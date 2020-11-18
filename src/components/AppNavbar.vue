@@ -65,7 +65,7 @@ export default {
 .navbar {
   height: 100%;
 
-  background-color: var(--cl-neutral-04);
+  background-color: var(--cl-neutral-06);
 
   .navbar__nav {
     padding: 35px 15px;
@@ -82,14 +82,13 @@ export default {
   .navbar__icon {
     display: flex;
 
-    margin-bottom: 4px;
-
-    color: var(--cl-neutral-light-04);
+    margin-bottom: $mg-2;
   }
 
   .navbar__icon,
   .pr {
-    transition: color 0.3s ease-in-out;
+    color: var(--cl-neutral-04);
+    transition: color $sec-1 ease-in-out;
   }
 
   .navbar__content {

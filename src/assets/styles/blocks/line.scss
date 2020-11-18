@@ -6,8 +6,12 @@
 
 .line {
   height: 1px;
-  margin: 0;
+  margin: 25px 0 28px 0;
 
   border: 0;
-  background-color: var(--cl-neutral-light-03);
+  background-color: var(--cl-neutral-03);
+
+  &.line_gap_minified {
+    margin-top: 18.5px;
+  }
 }

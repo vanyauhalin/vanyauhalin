@@ -1,48 +1,48 @@
 <template>
-  <section class="about">
-    <div class="about__content">
-      <div class="about__main">
-        <h1 class="hd hd_l_1">
-          {{ title }}
-        </h1>
-        <div :class="ctx.modification">
-          <p
-            class="pr pr_l_1"
-            v-for="(item, index) in ctxData"
-            :key="item"
-            :data-pr-index="index + 1"
-          >
-            {{ item }}
-          </p>
-        </div>
-        <button
-          class="about__toggle"
-          v-if="toggle.status"
-          @click="changeCtx"
+  <section
+    id="about"
+    class="about"
+  >
+    <div class="about__main">
+      <h1 class="hd hd_l_1">
+        {{ title }}
+      </h1>
+      <div :class="ctx.modification">
+        <p
+          class="pr pr_l_1"
+          v-for="(item, index) in ctxData"
+          :key="item"
+          :data-pr-index="index + 1"
         >
-          <JamIcons
-            :id="`${toggle.modification}_${toggle.icon.current}`"
-            :name="toggle.icon.current"
-            width="19"
-            height="19"
-          />
-        </button>
+          {{ item }}
+        </p>
       </div>
-      <div>
-        <div class="about__image">
-          <img
-            :src="require(`images/avatar.jpg`)"
-            alt="Avatar"
-            width="140"
-            height="140"
-          >
-        </div>
-        <button class="btn">
-          Download
-        </button>
-      </div>
+      <button
+        class="about__toggle"
+        v-if="toggle.status"
+        @click="changeCtx"
+      >
+        <JamIcons
+          :id="`${toggle.modification}_${toggle.icon.current}`"
+          :name="toggle.icon.current"
+          width="19"
+          height="19"
+        />
+      </button>
     </div>
-    <hr class="line">
+    <div>
+      <div class="about__image">
+        <img
+          :src="require(`images/avatar.jpg`)"
+          alt="Avatar"
+          width="140"
+          height="140"
+        >
+      </div>
+      <button class="btn">
+        Download
+      </button>
+    </div>
   </section>
 </template>
 
@@ -102,7 +102,8 @@ export default {
         },
         el,
         height: {
-          min: elHeightMin
+          min: elHeightMin,
+          max: 'auto'
         }
       }
     },
@@ -117,7 +118,7 @@ export default {
     },
     ctxTransition({ reverse = false } = {}) {
       gsap.to(this.ctx.el, {
-        height: () => (reverse ? this.ctx.height.min : 'auto'),
+        height: () => (reverse ? this.ctx.height.min : this.ctx.height.max),
         duration: this.transitionDuration
       })
     },
@@ -196,26 +197,18 @@ export default {
 
 <style lang="scss" scoped>
 .about {
-  .about__content {
-    display: flex;
-
-    margin-bottom: 18.5px;
-  }
+  display: flex;
 
   .about__main {
     width: 564px;
     margin-right: auto;
-
-    > .hd {
-      margin-bottom: 22px;
-    }
   }
 
   .about__ctx {
     overflow: hidden;
 
     > .pr {
-      margin-bottom: 10px;
+      margin-bottom: $mg-1;
 
       &:last-of-type {
         margin-bottom: 0;
@@ -229,31 +222,19 @@ export default {
     margin: 8.5px auto 0 auto;
     padding: 0;
 
-    color: var(--cl-neutral-light-04);
+    transition: transform $sec-1 ease-in-out;
+
+    color: var(--cl-neutral-04);
     background-color: transparent;
 
-    .about__toggle_sweep-enter-active {
-      animation: sweep 1s ease-in-out;
-    }
-
-    .about__toggle_sweep-leave-active {
-      animation: sweep 1s ease-in-out reverse;
-    }
-
-    @keyframes sweep {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 1;
-      }
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
     }
   }
 
   .about__image {
-    margin-bottom: 10px;
-    height: 140px;
+    margin-bottom: $mg-1;
   }
 }
 </style>

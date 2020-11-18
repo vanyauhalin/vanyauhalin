@@ -6,10 +6,23 @@
 
 .btn {
   font-size: $fs-5;
+  font-weight: $fw-2;
+  line-height: $lh-5;
 
   min-width: 140px;
-  padding: 11px 17px;
+  padding: 9px 15px;
+
+  transition: color .3s ease-in-out, background-color .3s ease-in-out;
 
   color: var(--cl-neutral-01);
-  background-color: var(--cl-neutral-04);
+  border: 2px solid var(--cl-neutral-06);
+  background-color: var(--cl-neutral-06);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--cl-neutral-06);
+    border: 2px solid var(--cl-neutral-06);
+    background-color: var(--cl-neutral-01);
+  }
 }

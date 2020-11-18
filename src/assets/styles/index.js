@@ -1,5 +1,6 @@
 // Base styles
 import './base/colors.scss'
+import './base/focus.scss'
 import './base/fonts.scss'
 import './base/normalize.scss'
 

@@ -20,8 +20,8 @@ module.exports = {
       alias: {
         images: root.assets('images'),
         scripts: root.assets('scripts'),
-        styles: root.assets('styles'),
-        components: root.components()
+        styles: root.assets('styles')
+        // components: root.components()
       }
     },
     plugins: [

@@ -7,6 +7,9 @@
         </aside>
         <main class="app__main">
           <SectionAbout />
+          <hr class="line line_gap_minified">
+          <SectionSkills />
+          <hr class="line">
         </main>
       </div>
     </div>
@@ -14,19 +17,23 @@
 </template>
 
 <script>
-import AppNavbar from 'components/AppNavbar.vue'
-import SectionAbout from 'components/sections/SectionAbout.vue'
+import AppNavbar from './components/AppNavbar.vue'
+import SectionAbout from './components/sections/SectionAbout.vue'
+import SectionSkills from './components/sections/SectionSkills.vue'
 
 export default {
   name: 'App',
   components: {
     AppNavbar,
-    SectionAbout
+    SectionAbout,
+    SectionSkills
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$content-pd: 100px;
+
 .app__inner {
   position: fixed;
   top: 0;
@@ -40,21 +47,23 @@ export default {
   width: 100%;
   height: 100%;
 
-  background-image: linear-gradient(to right, var(--cl-neutral-01) 50%, var(--cl-neutral-04) 0%);
+  background-image: linear-gradient(to right, var(--cl-neutral-01) 50%, var(--cl-neutral-06) 0%);
 }
 
 .app__content {
+  $content-pd-percent: 100 * 100 / 1080;
+
   display: flex;
   overflow: hidden;
 
-  height: (100 - 100 * 100 / 1080 * 2) * 1%;
-  padding: 100px;
+  height: (100 - $content-pd-percent * 2) * 1%;
+  padding: $content-pd;
 
   background-color: var(--cl-neutral-01);
 }
 
 .app__navbar {
-  width: 100px;
+  width: $content-pd;
 }
 
 .app__main {
@@ -62,10 +71,10 @@ export default {
   overflow-y: auto;
 
   box-sizing: border-box;
-  width: 856px;
-  padding: 35px - 4px 40px - 4px;
+  width: $main-wd;
+  padding: $main-pd-y - $main-br $main-pd-x - $main-br / 2;
 
-  border: 4px solid var(--cl-neutral-04);
+  border: $main-br solid var(--cl-neutral-06);
   border-left: none;
   background-color: var(--cl-neutral-01);
 }

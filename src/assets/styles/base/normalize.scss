@@ -36,12 +36,10 @@ html {
  */
 
 /**
- * Remove the page shift to the left when the scroll bar appears.
+ * Remove the margin in all browsers.
  */
 
 body {
-  // margin: 0 calc(-1 * (100vw - 100%)) 0 0;
-  // overflow-x: hidden;
   margin: 0;
 }
 
@@ -201,12 +199,14 @@ ol {
 /**
  * 1. Remove the border on images inside links in IE 10.
  * 2. Correct the `width` and `height` on `img` elements.
+ * 3.
  */
 
 img {
   border-style: none; // 1
   max-width: 100%;    // 2
   height: auto;       // 2
+  display: block;     // 3
 }
 
 /**

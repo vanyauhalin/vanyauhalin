@@ -5,21 +5,22 @@
  */
 
 .pr {
-  font-weight: 500;
+  font-weight: $fw-2;
 
-  color: var(--cl-neutral-light-04);
+  color: var(--cl-neutral-04);
 
   &.pr_l_1 {
     font-size: $fs-4;
-    line-height: 19px;
+    line-height: $lh-4;
   }
 
   &.pr_l_2 {
     font-size: $fs-5;
-    line-height: 15px;
+    line-height: $lh-5;
   }
 
+  // for links
   &.pr_highlighted {
-    color: var(--cl-neutral-04);
+    color: var(--cl-neutral-05);
   }
 }
