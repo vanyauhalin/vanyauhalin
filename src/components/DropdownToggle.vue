@@ -1,11 +1,11 @@
 <template>
   <button
     class="toggle"
-    v-if="toggleOptions.status"
+    v-if="toggle.status"
     @click="changeContainerHeight"
   >
     <JamIcons
-      :name="toggleOptions.icon.current"
+      :name="toggle.icon.current"
       width="19"
       height="19"
     />
@@ -19,110 +19,115 @@ export default {
   name: 'DropdownToggle',
   data() {
     return {
-      containerOptions: {},
-      toggleOptions: {
+      container: {},
+      toggle: {
         status: true,
         icon: {
           current: 'chevron-down',
           close: 'close'
         }
       },
-      transitionDuration: 0.9
+      duration: 0.9
     }
   },
   props: {
-    ctx: {
-      type: Array,
-      required: true,
-      validator(value) {
-        return value.every((item) => typeof item === 'string')
-      }
+    eclipse: {
+      type: [String, Boolean],
+      default: false
     },
-    container: {
-      type: Object,
-      validator(value) {
-        return typeof value.length.min === 'number'
-      },
-      default() {
-        return {
-          length: {
-            min: 1
-          }
-        }
-      }
+    lengthMin: {
+      type: [String, Number],
+      default: 1
+    },
+    lengthMax: {
+      type: [String, Number],
+      required: true
     }
   },
   mounted() {
-    if (this.ctx.length > this.container.length.min) {
-      this.setContainerOptions()
-      this.setToggleOptions()
-      this.changeContainerHeight({ animation: false, firstMount: true })
+    this.container = {
+      length: {
+        min: Number(this.lengthMin),
+        max: Number(this.lengthMax)
+      }
+    }
+    const { container } = this
+
+    if (container.length.max > container.length.min) {
+      this.setContainer()
+      this.setToggle()
+      this.changeContainerHeight({ firstMount: true })
     } else {
-      this.toggleOptions.status = false
+      this.toggle.status = false
     }
   },
   methods: {
-    setContainerOptions() {
-      const section = this.$parent.$el.id
-      const container = {
-        selector: 'data-container-num',
-        length: {
-          min: this.container.length.min
-        }
-      }
-      const ctx = {
-        selector: 'data-num'
-      }
+    setContainer() {
+      const parent = this.$el.parentElement
+      const ctx = { selector: 'data-num' }
+      const { container } = this
 
-      container.num = Number(this.$el.getAttribute(container.selector))
-      container.alone = container.num === 0
-
-      if (container.alone) {
-        ctx.el = document.querySelector(`#${section} [${ctx.selector}="${container.length.min}"]`)
-      } else {
-        const els = document.querySelectorAll(`#${section} [${container.selector}="${container.num}"]`)
-        ctx.el = Array.prototype.slice.call(els).find(
-          (el) => Number(el.getAttribute(ctx.selector)) === container.length.min
-        )
-      }
-
+      ctx.el = parent.querySelector(`[${ctx.selector}="${container.length.min}"]`)
       ctx.rect = ctx.el.getBoundingClientRect()
       container.el = ctx.el.parentElement
       container.rect = container.el.getBoundingClientRect()
 
-      this.containerOptions = {
+      this.container = {
         el: container.el,
-        alone: container.alone,
-        reverse: false,
+        reverse: true,
         height: {
           min: container.rect.height - (container.rect.bottom - ctx.rect.bottom),
           max: 'auto'
         },
         length: {
-          current: container.length.min,
-          min: container.length.min,
-          max: this.ctx.length
+          ...JSON.parse(JSON.stringify(container.length))
         }
       }
     },
-    setToggleOptions() {
-      const options = this.toggleOptions
-      this.toggleOptions = {
-        ...JSON.parse(JSON.stringify(options)),
+    setToggle() {
+      const { toggle } = this
+      this.toggle = {
+        ...JSON.parse(JSON.stringify(toggle)),
         icon: {
-          ...JSON.parse(JSON.stringify(options.icon)),
-          open: options.icon.current
+          ...JSON.parse(JSON.stringify(toggle.icon)),
+          open: toggle.icon.current
         }
       }
     },
 
-    containerTransition(height) {
-      gsap.to(this.containerOptions.el, {
-        height,
-        duration: this.transitionDuration
-      })
+    childrenTransition({ reverse = false } = {}) {
+      const { container } = this
+      const children = container.el.children[container.length.min - 1]
+
+      reverse
+        ? children.setAttribute('style', 'overflow: hidden; white-space: no-wrap')
+        : children.setAttribute('style', 'overflow: visible; white-space: normal')
     },
-    toggleTransition(reverse) {
+    containerTransition({ animation = true } = {}) {
+      const { container } = this
+      const to = {
+        height: container.reverse ? container.height.min : container.height.max,
+        duration: this.duration
+      }
+
+      if (animation) {
+        if (this.eclipse === 'true') {
+          if (container.reverse) {
+            gsap.to(container.el, to).then(() => {
+              this.childrenTransition({ reverse: !container.reverse })
+            })
+          } else {
+            this.childrenTransition()
+            gsap.to(container.el, to)
+          }
+        } else {
+          gsap.to(container.el, to)
+        }
+      } else {
+        this.container.el.setAttribute('style', `height: ${to.height}px`)
+      }
+    },
+    toggleTransition() {
       const options = {
         icon: this.$el.children[0].children[0],
         opacity: {
@@ -131,9 +136,9 @@ export default {
         },
         y: {
           enter: 0,
-          leave: reverse ? -3 : 3
+          leave: this.container.reverse ? -3 : 3
         },
-        duration: this.transitionDuration / 2
+        duration: this.duration / 2
       }
       const from = {
         opacity: options.opacity.enter,
@@ -154,38 +159,24 @@ export default {
         })
       })
     },
-    jointTransition(reverse, height) {
-      this.containerTransition(height)
-      this.toggleTransition(reverse)
+    jointTransition() {
+      this.containerTransition()
+      this.toggleTransition()
     },
 
     changeIcons() {
-      const options = this.toggleOptions
+      const { toggle } = this
 
-      this.toggleOptions.icon.current === options.icon.close
-        ? this.toggleOptions.icon.current = options.icon.open
-        : this.toggleOptions.icon.current = options.icon.close
+      this.container.reverse
+        ? this.toggle.icon.current = toggle.icon.close
+        : this.toggle.icon.current = toggle.icon.open
     },
-    changeContainerHeight({ animation = true, firstMount = false } = {}) {
-      const options = this.containerOptions
-      this.containerOptions.reverse = !options.reverse
-      const height = options.reverse ? options.height.min : options.height.max
-      const length = options.reverse ? options.length.min : options.length.max
+    changeContainerHeight({ firstMount = false } = {}) {
+      firstMount
+        ? this.containerTransition({ animation: false })
+        : this.jointTransition()
 
-      if (!options.alone && !firstMount) {
-        const children = options.el.children[options.length.min - 1]
-        const duration = this.transitionDuration * 1000
-
-        options.length.current === options.length.min
-          ? children.setAttribute('style', 'overflow: visible; white-space: normal')
-          : setTimeout(() => children.setAttribute('style', 'overflow: hidden; white-space: no-wrap'), duration)
-      }
-
-      animation
-        ? this.jointTransition(options.reverse, height)
-        : options.el.setAttribute('style', `height: ${height}px`)
-
-      this.containerOptions.length.current = length
+      this.container.reverse = !this.container.reverse
     }
   }
 }

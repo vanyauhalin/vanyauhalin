@@ -4,8 +4,8 @@ export default {
   install(Vue, options = {}) {
     Vue.component(JamIcons.name, JamIcons)
 
-    Object.entries(options).forEach((k, v) => {
-      if (JamIcons.props[k]) JamIcons.props[k].default = v
+    Object.entries(options).forEach((key, value) => {
+      if (JamIcons.props[key]) JamIcons.props[key].default = value
     })
   },
   add(icons) {

@@ -1,8 +1,5 @@
 <template>
-  <section
-    id="skills"
-    class="skills"
-  >
+  <section id="skills">
     <h2 class="hd hd_l_2">
       {{ title }}
     </h2>
@@ -20,8 +17,8 @@
             v-for="tool in group.tools"
             :key="tool.name"
           >
-            <span class="marker" />
-            <span class="pr pr_l_1">
+            <span class="marker skills__marker" />
+            <span class="pr pr_l_1 skills_pr">
               {{ tool.name }}
             </span>
             <progress
@@ -51,59 +48,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.skills {
-  $skills-wd: $main-wd - $main-pd-x * 2;
-  $groups-col: 3;
-  $groups-gap-col: 34px;
-  $groups-wd: ($skills-wd - $groups-gap-col * ($groups-col - 1)) / $groups-col;
-  $progressbar-wd: 100px;
+$skills-wd: $main-wd - $main-pd-x * 2;
+$groups-col: 3;
+$groups-gap-col: 34px;
+$groups-wd: ($skills-wd - $groups-gap-col * ($groups-col - 1)) / $groups-col;
+$progressbar-wd: 100px;
 
-  .skills__groups {
-    display: grid;
+.skills__groups {
+  display: grid;
 
-    grid-template: repeat(2, auto) / repeat($groups-col, 1fr);
-    gap: $mg-1 $groups-gap-col;
+  grid-template: repeat(2, auto) / repeat($groups-col, 1fr);
+  gap: $mg-1 $groups-gap-col;
+}
+
+.skills__tool {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: $mg-2;
+
+  padding-left: $list-pd;
+
+  &:last-of-type {
+    margin-bottom: 0;
   }
+}
 
-  .skills__tool {
-    display: flex;
-    align-items: center;
+.skills__marker {
+  background-color: var(--cl-neutral-04);
+}
 
-    margin-bottom: $mg-2;
+.skills_pr {
+  $pr-mg: 20px;
 
-    padding-left: $list-pd;
+  overflow: hidden;
 
-    > .marker {
-      background-color: var(--cl-neutral-04);
-    }
+  width: 100%;
+  max-width: $groups-wd - ($list-pd + $marker-wd + $marker-mg + $pr-mg + $progressbar-wd);
+  margin-right: $pr-mg;
 
-    > .pr {
-      $pr-mg: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-      overflow: hidden;
+.skills__progressbar {
+  width: $progressbar-wd;
+  height: $marker-wd;
 
-      width: 100%;
-      max-width: $groups-wd - ($list-pd + $marker-wd + $marker-mg + $pr-mg + $progressbar-wd);
-      margin-right: $pr-mg;
+  background-color: var(--cl-neutral-02);
 
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-
-  .skills__progressbar {
-    width: $progressbar-wd;
-    height: $marker-wd;
-
-    background-color: var(--cl-neutral-02);
-
-    &::-webkit-progress-value {
-      background-color: var(--cl-neutral-04);
-    }
+  &::-webkit-progress-value {
+    background-color: var(--cl-neutral-04);
   }
 }
 </style>

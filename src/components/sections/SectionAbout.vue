@@ -19,8 +19,8 @@
       </div>
       <DropdownToggle
         class="about__toggle"
-        :ctx="ctx"
-        :container="container"
+        length-min="2"
+        :length-max="ctx.length"
       />
     </div>
     <div>
@@ -46,15 +46,6 @@ import DropdownToggle from '../DropdownToggle.vue'
 
 export default {
   name: 'SectionAbout',
-  data() {
-    return {
-      container: {
-        length: {
-          min: 2
-        }
-      }
-    }
-  },
   components: {
     DropdownToggle
   },

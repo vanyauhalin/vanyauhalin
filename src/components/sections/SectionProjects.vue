@@ -10,7 +10,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import TheList from '../list/TheList.vue'
+import TheList from '../TheList.vue'
 
 export default {
   name: 'SectionProjects',
