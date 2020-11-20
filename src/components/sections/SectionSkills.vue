@@ -20,8 +20,10 @@
             v-for="tool in group.tools"
             :key="tool.name"
           >
-            <span class="skills__marker" />
-            <span class="pr pr_l_5">{{ tool.name }}</span>
+            <span class="marker" />
+            <span class="pr pr_l_1">
+              {{ tool.name }}
+            </span>
             <progress
               class="skills__progressbar"
               max="100"
@@ -54,8 +56,6 @@ export default {
   $groups-col: 3;
   $groups-gap-col: 34px;
   $groups-wd: ($skills-wd - $groups-gap-col * ($groups-col - 1)) / $groups-col;
-  $marker-wd: 5px;
-  $marker-mg: 10px;
   $progressbar-wd: 100px;
 
   .skills__groups {
@@ -66,14 +66,16 @@ export default {
   }
 
   .skills__tool {
-    $tool-pd-start: 17px;
-
     display: flex;
     align-items: center;
 
     margin-bottom: $mg-2;
 
-    padding-inline-start: $tool-pd-start;
+    padding-left: $list-pd;
+
+    > .marker {
+      background-color: var(--cl-neutral-04);
+    }
 
     > .pr {
       $pr-mg: 20px;
@@ -81,7 +83,7 @@ export default {
       overflow: hidden;
 
       width: 100%;
-      max-width: $groups-wd - ($tool-pd-start + $marker-wd + $marker-mg + $pr-mg + $progressbar-wd);
+      max-width: $groups-wd - ($list-pd + $marker-wd + $marker-mg + $pr-mg + $progressbar-wd);
       margin-right: $pr-mg;
 
       white-space: nowrap;
@@ -91,14 +93,6 @@ export default {
     &:last-of-type {
       margin-bottom: 0;
     }
-  }
-
-  .skills__marker {
-    width: $marker-wd;
-    height: $marker-wd;
-    margin-right: $marker-mg;
-
-    background-color: var(--cl-neutral-04);
   }
 
   .skills__progressbar {

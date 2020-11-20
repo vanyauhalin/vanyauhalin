@@ -10,6 +10,8 @@
           <hr class="line line_gap_minified">
           <SectionSkills />
           <hr class="line">
+          <SectionProjects />
+          <hr class="line">
         </main>
       </div>
     </div>
@@ -19,6 +21,7 @@
 <script>
 import AppNavbar from './components/AppNavbar.vue'
 import SectionAbout from './components/sections/SectionAbout.vue'
+import SectionProjects from './components/sections/SectionProjects.vue'
 import SectionSkills from './components/sections/SectionSkills.vue'
 
 export default {
@@ -26,6 +29,7 @@ export default {
   components: {
     AppNavbar,
     SectionAbout,
+    SectionProjects,
     SectionSkills
   }
 }

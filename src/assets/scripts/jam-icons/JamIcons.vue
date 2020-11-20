@@ -8,7 +8,6 @@
     role="presentation"
   >
     <g
-      :id="id"
       :fill="fill"
       v-html="icon"
     />
@@ -30,10 +29,6 @@ export default {
     height: {
       type: [String, Number],
       default: 24
-    },
-    id: {
-      type: String,
-      default: ''
     },
     fill: {
       type: String,

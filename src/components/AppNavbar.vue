@@ -17,7 +17,9 @@
               height="36"
             />
           </div>
-          <p class="pr pr_l_2">{{ item.name }}</p>
+          <p class="pr pr_l_2">
+            {{ item.name }}
+          </p>
         </a>
       </li>
     </ul>
