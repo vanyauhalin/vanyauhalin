@@ -9,8 +9,8 @@
         <span class="marker" />
         <a
           class="pr pr_l_1 item__name"
-          v-if="item.src"
-          :href="item.src"
+          v-if="item.view"
+          :href="item.view"
           target="_blank"
         >
           {{ item.name }}
@@ -46,19 +46,19 @@
           :ctx="item.date"
         />
         <ItemTag
-          v-if="item.view"
-          name="view"
-          :ctx="item.view"
-        />
-        <ItemTag
-          v-if="item.mockup"
-          name="mockup"
-          :ctx="item.mockup"
+          v-if="item.code"
+          name="code"
+          :ctx="item.code"
         />
         <ItemTag
           v-if="item.stack"
           name="stack"
           :ctx="item.stack"
+        />
+        <ItemTag
+          v-if="item.experience"
+          name="experience"
+          :ctx="item.experience"
         />
       </footer>
     </li>

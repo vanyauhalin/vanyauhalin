@@ -12,6 +12,8 @@
           <hr class="line">
           <SectionProjects />
           <hr class="line">
+          <SectionExperience />
+          <hr class="line">
         </main>
       </div>
     </div>
@@ -21,6 +23,7 @@
 <script>
 import AppNavbar from './components/AppNavbar.vue'
 import SectionAbout from './components/sections/SectionAbout.vue'
+import SectionExperience from './components/sections/SectionExperience.vue'
 import SectionProjects from './components/sections/SectionProjects.vue'
 import SectionSkills from './components/sections/SectionSkills.vue'
 
@@ -29,6 +32,7 @@ export default {
   components: {
     AppNavbar,
     SectionAbout,
+    SectionExperience,
     SectionProjects,
     SectionSkills
   }

@@ -48,7 +48,7 @@ export default {
           anchor: 'projects'
         },
         {
-          icon: 'dna',
+          icon: 'universe',
           name: 'Experience',
           anchor: 'experience'
         },

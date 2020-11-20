@@ -1,8 +1,10 @@
 const state = {
   title: 'Проекты',
-  stack: ['Vue.js', 'Scss', 'Bootstrap'],
+  filter: {
+    stack: ['Vue.js', 'Scss', 'Bootstrap']
+  },
   ctx: [{
-    name: 'yansultanov/yansultanov',
+    name: 'yansultanov.github.io',
     description: [
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+',
@@ -10,10 +12,9 @@ const state = {
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
     ],
-    src: 'https://github.com/yansultanov/yansultanov',
+    view: 'https://yansultanov.github.io',
     date: '11.2020',
-    view: 'https://github.com/yansultanov/yansultanov',
-    // mockup: ,
+    code: 'https://github.com/yansultanov/yansultanov',
     stack: ['Vue.js', 'Scss']
   }, {
     name: 'yansultanov/yansultanov+',

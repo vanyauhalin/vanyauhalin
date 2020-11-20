@@ -37,25 +37,24 @@ export default {
       default: {
         date: {
           icon: 'calendar',
+          width: 13.34,
+          height: 13.34
+        },
+        code: {
+          icon: 'merge',
           width: 12,
-          height: 12
-        },
-        view: {
-          icon: 'picture',
-          width: 13.5,
-          height: 13.5,
-          link: true
-        },
-        mockup: {
-          icon: 'attachment',
-          width: 10.8,
-          height: 10.8,
+          height: 12,
           link: true
         },
         stack: {
           icon: 'terminal',
-          width: 16,
-          height: 16
+          width: 17.65,
+          height: 17.65
+        },
+        experience: {
+          icon: 'universe',
+          width: 13.34,
+          height: 13.34
         }
       }
     }
@@ -83,10 +82,12 @@ export default {
           ? ctx = item
           : ctx += `, ${item}`
       })
-    } else if (key === 'date') {
-      ctx = `${this.ctx} г.`
     } else if (key === 'date' && typeof this.ctx === 'object') {
       ctx = `${this.ctx.start}-${this.ctx.end} гг.`
+    } else if (key === 'date') {
+      ctx = `${this.ctx} г.`
+    } else if (key === 'experience') {
+      ctx = this.ctx
     } else {
       ctx = `${key.charAt(0).toUpperCase()}${key.slice(1)}`
     }
