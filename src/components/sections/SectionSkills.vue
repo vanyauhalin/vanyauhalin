@@ -17,7 +17,7 @@
             v-for="tool in group.tools"
             :key="tool.name"
           >
-            <span class="marker skills__marker" />
+            <span class="marker" />
             <span class="pr pr_l_1 skills_pr">
               {{ tool.name }}
             </span>
@@ -66,16 +66,11 @@ $progressbar-wd: 100px;
   align-items: center;
 
   margin-bottom: $mg-2;
-
   padding-left: $list-pd;
 
   &:last-of-type {
     margin-bottom: 0;
   }
-}
-
-.skills__marker {
-  background-color: var(--cl-neutral-04);
 }
 
 .skills_pr {

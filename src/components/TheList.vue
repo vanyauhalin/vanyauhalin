@@ -6,7 +6,7 @@
       :key="item.name"
     >
       <header class="item__header">
-        <span class="marker" />
+        <span class="marker item__marker" />
         <a
           class="pr pr_l_1 item__name"
           v-if="item.view"
@@ -101,8 +101,8 @@ export default {
     margin-bottom: $mg-1;
   }
 
-  a.item__name {
-    text-decoration: underline;
+  .item__marker {
+    background-color: var(--cl-neutral-05);
   }
 
   .item__name {

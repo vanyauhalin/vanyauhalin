@@ -3,11 +3,11 @@
     <JamIcons
       class="tag__icon"
       :name="current.icon"
-      :width="current.width"
-      :height="current.height"
+      width="15"
+      height="15"
     />
     <a
-      class="pr pr_l_2 tag__link"
+      class="pr pr_l_2"
       v-if="current.link"
       :href="ctx"
       target="_blank"
@@ -25,36 +25,26 @@
 
 <script>
 export default {
-  name: 'TagDate',
+  name: 'ItemTag',
   data() {
     return {
       current: {
         name: 'Date',
-        icon: 'calendar',
-        width: 12,
-        height: 12
+        icon: 'calendar'
       },
       default: {
         date: {
-          icon: 'calendar',
-          width: 13.34,
-          height: 13.34
+          icon: 'calendar'
         },
         code: {
           icon: 'merge',
-          width: 12,
-          height: 12,
           link: true
         },
         stack: {
-          icon: 'terminal',
-          width: 17.65,
-          height: 17.65
+          icon: 'terminal'
         },
         experience: {
-          icon: 'universe',
-          width: 13.34,
-          height: 13.34
+          icon: 'universe'
         }
       }
     }
@@ -64,7 +54,7 @@ export default {
       type: String,
       required: true,
       validator(value) {
-        return ['date', 'view', 'mockup', 'stack'].indexOf(value) !== -1
+        return ['date', 'code', 'stack', 'experience'].indexOf(value) !== -1
       }
     },
     ctx: {
@@ -105,20 +95,16 @@ export default {
   display: flex;
   align-items: center;
 
-  margin-right: 20px;
+  margin-right: $mg-1 * 2;
 
   &:last-of-type {
     margin-right: 0;
   }
 
   .tag__icon {
-    margin-right: 8px;
+    margin-right: $mg-2 * 2;
 
     color: var(--cl-neutral-04);
-  }
-
-  .tag__link {
-    text-decoration: underline;
   }
 }
 </style>

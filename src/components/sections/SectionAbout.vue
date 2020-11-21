@@ -61,10 +61,10 @@ export default {
 <style lang="scss" scoped>
 .about {
   display: flex;
+  justify-content: space-between;
 
   .about__main {
     width: 564px;
-    margin-right: auto;
   }
 
   .about__ctx {
