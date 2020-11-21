@@ -23,31 +23,50 @@
           </p>
         </li>
       </ul>
-      <form class="contacts__form">
-        <input
-          class="contacts__input"
-          v-for="item in inputs"
-          :key="item.name"
-          type="text"
-          :name="item.name"
-          :placeholder="item.placeholder"
-          :pattern="item.pattern"
-          required
+      <transition name="contacts__transition">
+        <form
+          :class="form.class"
+          v-if="!farewell.status"
         >
-        <textarea
-          :class="textarea.class"
-          :name="textarea.name"
-          :placeholder="textarea.placeholder"
-          :rows="textarea.rows.current"
-          required
-        />
-        <button
-          class="btn contacts__btn"
-          type="submit"
+          <input
+            class="contacts__input"
+            v-for="item in inputs"
+            :key="item.name"
+            type="text"
+            :name="item.name"
+            :placeholder="item.placeholder"
+            :pattern="item.pattern"
+            required
+          >
+          <textarea
+            :class="textarea.class"
+            :name="textarea.name"
+            :placeholder="textarea.placeholder"
+            :rows="textarea.rows.current"
+            required
+          />
+          <!-- @click="setFarewell" -->
+          <!-- type="button" -->
+          <button
+            class="btn contacts__btn"
+          >
+            Отправить
+          </button>
+        </form>
+        <div
+          class="contacts__farewell"
+          :style="`height: ${farewell.height}px; width: ${farewell.width}px`"
+          v-else
         >
-          Отправить
-        </button>
-      </form>
+          <p
+            class="pr pr_l_2 contacts__pr"
+            v-for="item in farewell.ctx"
+            :key="item"
+          >
+            {{ item }}
+          </p>
+        </div>
+      </transition>
     </div>
   </section>
 </template>
@@ -60,6 +79,9 @@ export default {
   name: 'SectionContacts',
   data() {
     return {
+      form: {
+        class: 'contacts__form'
+      },
       inputs: [{
         name: 'name',
         placeholder: 'Ваше Имя'
@@ -79,6 +101,13 @@ export default {
           current: 3,
           min: 3
         }
+      },
+      farewell: {
+        status: false,
+        height: 0,
+        width: 0,
+        class: '',
+        ctx: ['Благодарю Вас за оставленное предложение!', 'Я свяжусь с Вами в ближайшее время.', ':)']
       }
     }
   },
@@ -89,29 +118,48 @@ export default {
     })
   },
   mounted() {
-    const { rows } = this.textarea
-    const textarea = { el: document.getElementsByClassName(this.textarea.class)[0] }
-    textarea.baseHeight = textarea.el.scrollHeight
-
-    textarea.el.addEventListener('input', () => {
-      const promise = new Promise((resolve) => {
-        this.textarea.rows.current = rows.min
-
-        resolve('done')
-      })
-
-      promise.then(() => {
-        const difference = textarea.el.scrollHeight - textarea.baseHeight
-
-        if (typeof textarea.step === 'undefined' && textarea.el.scrollHeight > textarea.baseHeight) {
-          textarea.step = difference
+    this.parsePattern()
+    this.setTextareaRows()
+  },
+  methods: {
+    parsePattern() {
+      this.inputs.forEach((item, index) => {
+        if (typeof item.pattern !== 'undefined') {
+          this.inputs[index].pattern = item.pattern.toString().slice(1, -1)
         }
-
-        typeof textarea.step === 'undefined'
-          ? this.textarea.rows.current = rows.min
-          : this.textarea.rows.current = rows.min + Math.ceil(difference / textarea.step)
       })
-    })
+    },
+    setTextareaRows() {
+      const { rows } = this.textarea
+      const textarea = { el: document.getElementsByClassName(this.textarea.class)[0] }
+      textarea.baseHeight = textarea.el.scrollHeight
+
+      textarea.el.addEventListener('input', () => {
+        const promise = new Promise((resolve) => {
+          this.textarea.rows.current = rows.min
+
+          resolve('done')
+        })
+
+        promise.then(() => {
+          const difference = textarea.el.scrollHeight - textarea.baseHeight
+
+          if (typeof textarea.step === 'undefined' && textarea.el.scrollHeight > textarea.baseHeight) {
+            textarea.step = difference
+          }
+
+          typeof textarea.step === 'undefined'
+            ? this.textarea.rows.current = rows.min
+            : this.textarea.rows.current = rows.min + Math.ceil(difference / textarea.step)
+        })
+      })
+    },
+    setFarewell() {
+      const form = document.getElementsByClassName(this.form.class)[0]
+      this.farewell.height = form.offsetHeight
+      this.farewell.width = form.offsetWidth
+      this.farewell.status = true
+    }
   }
 }
 </script>
@@ -135,8 +183,6 @@ export default {
 }
 
 .contacts__form {
-  position: relative;
-
   display: grid;
 
   grid-template: repeat(3, auto) / repeat(3, $btn-wd);
@@ -170,5 +216,35 @@ export default {
 
 .contacts__btn {
   grid-column: 3;
+}
+
+.contacts__transition-enter-active {
+  animation: fade $sec-1 ease-in-out;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.contacts__farewell {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  box-sizing: border-box;
+  padding: $mg-1;
+
+  background-color: var(--cl-neutral-06);
+}
+
+.contacts__pr {
+  color: var(--cl-neutral-01);
 }
 </style>

@@ -79,7 +79,7 @@ $content-pd: 100px;
 
 .app__main {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: overlay;
 
   box-sizing: border-box;
   width: $main-wd;
@@ -88,5 +88,14 @@ $content-pd: 100px;
   border: $main-br solid var(--cl-neutral-06);
   border-left: none;
   background-color: var(--cl-neutral-01);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    outline: $main-br solid var(--cl-neutral-03);
+    background-color: var(--cl-neutral-03);
+  }
 }
 </style>
