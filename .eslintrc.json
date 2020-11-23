@@ -38,6 +38,10 @@
     "no-multi-str": "error",
     // "no-new": "error",
     "no-octal-escape": "error",
+    "no-param-reassign": ["error", {
+      "props": true,
+      "ignorePropertyModificationsFor": ["state"]
+    }],
     "no-return-assign": "error",
     "no-return-await": "error",
     "no-self-compare": "error",

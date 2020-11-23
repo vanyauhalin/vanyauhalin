@@ -1,7 +1,7 @@
 <template>
   <section id="skills">
     <h2 class="hd hd_l_2">
-      {{ title }}
+      {{ title(name) }}
     </h2>
     <ul class="skills__groups">
       <li
@@ -38,9 +38,14 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'SectionSkills',
+  data() {
+    return {
+      name: 'skills'
+    }
+  },
   computed: {
     ...mapGetters({
-      title: 'GET_SKILLS_TITLE',
+      title: 'GET_TITLE',
       ctx: 'GET_SKILLS_CTX'
     })
   }

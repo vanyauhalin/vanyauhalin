@@ -10,9 +10,17 @@
           <hr class="line line_gap_minified">
           <SectionSkills />
           <hr class="line">
-          <SectionProjects />
+          <SectionTemplate
+            :name="name[0]"
+            :title="title(name[0])"
+            :ctx="ctx(name[0])"
+          />
           <hr class="line">
-          <SectionExperience />
+          <SectionTemplate
+            :name="name[1]"
+            :title="title(name[1])"
+            :ctx="ctx(name[1])"
+          />
           <hr class="line">
           <SectionContacts />
         </main>
@@ -22,12 +30,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import AppNavbar from './components/AppNavbar.vue'
 import SectionAbout from './components/sections/SectionAbout.vue'
 import SectionContacts from './components/sections/SectionContacts.vue'
-import SectionExperience from './components/sections/SectionExperience.vue'
-import SectionProjects from './components/sections/SectionProjects.vue'
 import SectionSkills from './components/sections/SectionSkills.vue'
+import SectionTemplate from './components/sections/SectionTemplate.vue'
 
 export default {
   name: 'App',
@@ -35,9 +44,19 @@ export default {
     AppNavbar,
     SectionAbout,
     SectionContacts,
-    SectionExperience,
-    SectionProjects,
-    SectionSkills
+    SectionSkills,
+    SectionTemplate
+  },
+  data() {
+    return {
+      name: ['projects', 'experience']
+    }
+  },
+  computed: {
+    ...mapGetters({
+      title: 'GET_TITLE',
+      ctx: 'GET_CTX'
+    })
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <section id="contacts">
     <h2 class="hd hd_l_2">
-      {{ title }}
+      {{ title(name) }}
     </h2>
     <div class="contacts__main">
       <ul>
@@ -79,6 +79,7 @@ export default {
   name: 'SectionContacts',
   data() {
     return {
+      name: 'contacts',
       form: {
         class: 'contacts__form'
       },
@@ -113,7 +114,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      title: 'GET_CONTACTS_TITLE',
+      title: 'GET_TITLE',
       ctx: 'GET_CONTACTS_CTX'
     })
   },

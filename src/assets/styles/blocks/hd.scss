@@ -22,7 +22,7 @@
     font-size: $fs-2;
     line-height: $lh-2;
 
-    margin-bottom: 20px;
+    margin-bottom: $mg-1 * 2;
 
     letter-spacing: converter(14, $fs-2);
   }
@@ -37,5 +37,9 @@
     letter-spacing: converter(12, $fs-3);
 
     color: var(--cl-neutral-05);
+  }
+
+  &.hd_gap_minified {
+    margin: 0;
   }
 }

@@ -42,7 +42,6 @@ const state = {
 }
 
 const getters = {
-  GET_SKILLS_TITLE: (state) => state.title,
   GET_SKILLS_CTX: (state) => state.ctx
 }
 

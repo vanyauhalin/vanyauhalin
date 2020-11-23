@@ -1,10 +1,13 @@
 const state = {
   title: 'Проекты',
   filter: {
-    stack: ['Vue.js', 'Scss', 'Bootstrap']
+    stack: {
+      selected: [],
+      items: ['Vue.js', 'Scss']
+    }
   },
   ctx: [{
-    name: 'yansultanov.github.io',
+    name: 'Личный сайт yansultanov.github.io',
     description: [
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+',
@@ -12,10 +15,12 @@ const state = {
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
     ],
-    view: 'https://yansultanov.github.io',
-    date: '11.2020',
-    code: 'https://github.com/yansultanov/yansultanov',
-    stack: ['Vue.js', 'Scss']
+    tags: {
+      view: 'https://yansultanov.github.io',
+      date: '11.2020',
+      code: 'https://github.com/yansultanov/yansultanov',
+      stack: ['Vue.js', 'Scss', 'Bootstrap']
+    }
   }, {
     name: 'yansultanov/yansultanov+',
     description: [
@@ -25,19 +30,28 @@ const state = {
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
     ],
-    date: '11.2020',
-    view: 'https://github.com/yansultanov/yansultanov',
-    // mockup: ,
-    stack: ['Vue.js', 'Scss']
+    tags: {
+      date: '11.2020',
+      view: 'https://github.com/yansultanov/yansultanov',
+      stack: ['Scss']
+    }
+  }, {
+    name: 'yansultanov/yansultanov++',
+    description: [
+      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.',
+      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+',
+      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++',
+      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
+      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
+    ],
+    tags: {
+      date: '11.2020',
+      view: 'https://github.com/yansultanov/yansultanov',
+      stack: ['Vue.js', 'Bootstrap']
+    }
   }]
 }
 
-const getters = {
-  GET_PROJECTS_TITLE: (state) => state.title,
-  GET_PROJECTS_CTX: (state) => state.ctx
-}
-
 export default {
-  state,
-  getters
+  state
 }

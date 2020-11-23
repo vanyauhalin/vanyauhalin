@@ -1,7 +1,10 @@
 const state = {
   title: 'Опыт',
   filter: {
-    experience: ['Обучение', 'Компания']
+    experience: {
+      selected: [],
+      items: ['Обучение', 'Компания']
+    }
   },
   ctx: [{
     name: 'Российский новый университет',
@@ -12,11 +15,13 @@ const state = {
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
     ],
-    date: {
-      start: '2018',
-      end: '2020'
-    },
-    experience: 'Обучение'
+    tags: {
+      date: {
+        start: '2018',
+        end: '2020'
+      },
+      experience: 'Обучение'
+    }
   }, {
     name: 'Российский новый университет+',
     description: [
@@ -26,20 +31,16 @@ const state = {
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
       'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
     ],
-    date: {
-      start: '2018',
-      end: '2020'
-    },
-    experience: 'Обучение'
+    tags: {
+      date: {
+        start: '2018',
+        end: '2020'
+      },
+      experience: 'Обучение'
+    }
   }]
 }
 
-const getters = {
-  GET_EXPERIENCE_TITLE: (state) => state.title,
-  GET_EXPERIENCE_CTX: (state) => state.ctx
-}
-
 export default {
-  state,
-  getters
+  state
 }

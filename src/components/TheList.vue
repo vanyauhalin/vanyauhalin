@@ -41,24 +41,24 @@
       </div>
       <footer class="item__footer">
         <ItemTag
-          v-if="item.date"
+          v-if="item.tags.date"
           name="date"
-          :ctx="item.date"
+          :ctx="item.tags.date"
         />
         <ItemTag
-          v-if="item.code"
+          v-if="item.tags.code"
           name="code"
-          :ctx="item.code"
+          :ctx="item.tags.code"
         />
         <ItemTag
-          v-if="item.stack"
+          v-if="item.tags.stack"
           name="stack"
-          :ctx="item.stack"
+          :ctx="item.tags.stack"
         />
         <ItemTag
-          v-if="item.experience"
+          v-if="item.tags.experience"
           name="experience"
-          :ctx="item.experience"
+          :ctx="item.tags.experience"
         />
       </footer>
     </li>

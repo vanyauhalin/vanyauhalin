@@ -24,7 +24,6 @@ const state = {
 }
 
 const getters = {
-  GET_CONTACTS_TITLE: (state) => state.title,
   GET_CONTACTS_CTX: (state) => state.ctx
 }
 

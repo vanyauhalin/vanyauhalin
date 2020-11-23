@@ -5,7 +5,7 @@
   >
     <div class="about__main">
       <h1 class="hd hd_l_1">
-        {{ title }}
+        {{ title(name) }}
       </h1>
       <div class="about__ctx">
         <p
@@ -49,9 +49,14 @@ export default {
   components: {
     DropdownToggle
   },
+  data() {
+    return {
+      name: 'about'
+    }
+  },
   computed: {
     ...mapGetters({
-      title: 'GET_ABOUT_TITLE',
+      title: 'GET_TITLE',
       ctx: 'GET_ABOUT_CTX'
     })
   }
