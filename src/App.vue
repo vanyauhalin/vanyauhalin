@@ -83,12 +83,13 @@ $content-pd: 100px;
 
 .app__content {
   $content-pd-percent: 100 * 100 / 1080;
+  $content-hg: (100 - $content-pd-percent * 2) * 1%;
 
   display: flex;
   overflow: hidden;
 
-  height: (100 - $content-pd-percent * 2) * 1%;
-  padding: $content-pd;
+  height: $content-hg;
+  padding: 100 - $content-hg $content-pd;
 
   background-color: var(--cl-neutral-01);
 }

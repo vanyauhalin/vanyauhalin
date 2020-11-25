@@ -7,8 +7,9 @@
         :key="item.name"
       >
         <a
-          class="navbar__content"
-          :href="`#${item.anchor}`"
+          class="navbar__ctx"
+          href="#"
+          v-scroll-to="scrollOptions({ anchor: item.anchor, offset: item.offset })"
         >
           <div class="navbar__icon">
             <JamIcons
@@ -17,7 +18,7 @@
               height="36"
             />
           </div>
-          <p class="pr pr_l_2">
+          <p class="pr pr_l_2 navbar__pr">
             {{ item.name }}
           </p>
         </a>
@@ -35,7 +36,8 @@ export default {
         {
           icon: 'user-square',
           name: 'About',
-          anchor: 'about'
+          anchor: 'about',
+          offset: -35
         },
         {
           icon: 'keyboard',
@@ -59,6 +61,17 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    scrollOptions({ anchor, offset = -28 } = {}) {
+      return {
+        offset,
+        el: `#${anchor}`,
+        container: '.app__main',
+        duration: 450,
+        lazy: false
+      }
+    }
   }
 }
 </script>
@@ -70,14 +83,30 @@ export default {
   background-color: var(--cl-neutral-06);
 
   .navbar__nav {
-    padding: 35px 15px;
+    padding: $main-pd-y 15px;
   }
 
   .navbar__item {
-    margin-bottom: 35px;
+    margin-bottom: $main-pd-y - $main-br;
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+  }
+
+  .navbar__ctx {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      > .navbar__icon,
+      > .navbar__pr {
+        color: var(--cl-neutral-01);
+      }
     }
   }
 
@@ -88,23 +117,10 @@ export default {
   }
 
   .navbar__icon,
-  .pr {
-    color: var(--cl-neutral-04);
+  .navbar__pr {
     transition: color $sec-1 ease-in-out;
-  }
 
-  .navbar__content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    &:hover,
-    &:focus {
-      > .navbar__icon,
-      > .pr {
-        color: var(--cl-neutral-01);
-      }
-    }
+    color: var(--cl-neutral-04);
   }
 }
 </style>
