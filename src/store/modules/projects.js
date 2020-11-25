@@ -3,7 +3,7 @@ const state = {
   filter: {
     stack: {
       selected: [],
-      items: ['Vue.js', 'Scss']
+      items: ['Vue.js', 'Scss', 'sdfsd', 'Boot', 'asd', '1312', 'asdasda']
     }
   },
   ctx: [{
@@ -19,35 +19,7 @@ const state = {
       view: 'https://yansultanov.github.io',
       date: '11.2020',
       code: 'https://github.com/yansultanov/yansultanov',
-      stack: ['Vue.js', 'Scss', 'Bootstrap']
-    }
-  }, {
-    name: 'yansultanov/yansultanov+',
-    description: [
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
-    ],
-    tags: {
-      date: '11.2020',
-      view: 'https://github.com/yansultanov/yansultanov',
-      stack: ['Scss']
-    }
-  }, {
-    name: 'yansultanov/yansultanov++',
-    description: [
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.+++',
-      'Дебютная работа с использованием JS-фреймворка Vue.js и препроцессора Scss.++++'
-    ],
-    tags: {
-      date: '11.2020',
-      view: 'https://github.com/yansultanov/yansultanov',
-      stack: ['Vue.js', 'Bootstrap']
+      stack: ['Vue.js', 'Scss']
     }
   }]
 }

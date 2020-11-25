@@ -18,4 +18,8 @@
     font-size: $fs-5;
     line-height: $lh-5;
   }
+
+  &.pr_theme_highlighted {
+    color: var(--cl-neutral-05);
+  }
 }

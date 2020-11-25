@@ -1,5 +1,8 @@
 <template>
-  <section :id="name">
+  <section
+    :id="name"
+    class="section"
+  >
     <div class="section__header">
       <h2 class="hd hd_l_2 hd_gap_minified">
         {{ title }}
@@ -38,6 +41,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.section {
+  position: relative;
+}
+
 .section__header {
   display: flex;
   align-items: center;

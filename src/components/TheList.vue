@@ -8,7 +8,7 @@
       <header class="item__header">
         <span class="marker item__marker" />
         <a
-          class="pr pr_l_1 item__name"
+          class="pr pr_l_1 pr_theme_highlighted"
           v-if="item.view"
           :href="item.view"
           target="_blank"
@@ -16,7 +16,7 @@
           {{ item.name }}
         </a>
         <p
-          class="pr pr_l_1 item__name"
+          class="pr pr_l_1 pr_theme_highlighted"
           v-else
         >
           {{ item.name }}
@@ -94,6 +94,11 @@ export default {
     margin-bottom: 0;
   }
 
+  /**
+   * Header
+   * ---------------------------------------------------------------------------
+   */
+
   .item__header {
     display: flex;
     align-items: center;
@@ -105,9 +110,10 @@ export default {
     background-color: var(--cl-neutral-05);
   }
 
-  .item__name {
-    color: var(--cl-neutral-05);
-  }
+  /**
+   * Main
+   * ---------------------------------------------------------------------------
+   */
 
   .item__main {
     position: relative;
@@ -141,9 +147,13 @@ export default {
     right: -34.75px;
   }
 
+  /**
+   * Footer
+   * ---------------------------------------------------------------------------
+   */
+
   .item__footer {
     display: flex;
-    // flex-wrap: wrap;
 
     padding-left: $marker-wd + $marker-mg;
   }

@@ -26,6 +26,12 @@
   "vendor-prefix-align": true,
   "sort-order": [
     [
+      "$include"
+    ],
+    [
+      "$variable"
+    ],
+    [
       "font",
       "font-family",
       "font-size",

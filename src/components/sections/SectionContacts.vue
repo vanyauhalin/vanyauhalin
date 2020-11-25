@@ -23,7 +23,7 @@
           </p>
         </li>
       </ul>
-      <transition name="contacts__transition">
+      <transition name="contacts__form_tr_fade">
         <form
           :class="form.class"
           v-if="!farewell.status"
@@ -219,18 +219,8 @@ export default {
   grid-column: 3;
 }
 
-.contacts__transition-enter-active {
+.contacts__form_tr_fade-enter-active {
   animation: fade $sec-1 ease-in-out;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 .contacts__farewell {

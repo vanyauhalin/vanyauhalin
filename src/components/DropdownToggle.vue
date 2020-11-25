@@ -62,6 +62,12 @@ export default {
     }
   },
   methods: {
+
+    /**
+     * Set data
+     * -------------------------------------------------------------------------
+     */
+
     setContainer() {
       const parent = this.$el.parentElement
       const ctx = { selector: 'data-num' }
@@ -94,6 +100,11 @@ export default {
         }
       }
     },
+
+    /**
+     * Transitions
+     * -------------------------------------------------------------------------
+     */
 
     childrenTransition({ reverse = false } = {}) {
       const { container } = this
@@ -142,27 +153,31 @@ export default {
       }
       const from = {
         opacity: options.opacity.enter,
-        y: options.y.enter
+        y: options.y.enter,
+        duration: options.duration
       }
 
-      gsap.fromTo(options.icon, from, {
-        opacity: options.opacity.leave,
-        y: options.y.leave,
-        duration: options.duration
-      }).then(() => this.changeIcons()).then(() => {
-        gsap.fromTo(options.icon, {
+      function to({ reverse = false } = {}) {
+        return {
           opacity: options.opacity.leave,
-          y: -options.y.leave
-        }, {
-          ...from,
+          y: reverse ? -options.y.leave : options.y.leave,
           duration: options.duration
-        })
-      })
+        }
+      }
+
+      gsap.fromTo(options.icon, from, to())
+        .then(() => this.changeIcons())
+        .then(() => gsap.fromTo(options.icon, to({ reverse: true }), from))
     },
     jointTransition() {
       this.containerTransition()
       this.toggleTransition()
     },
+
+    /**
+     * Change something
+     * -------------------------------------------------------------------------
+     */
 
     changeIcons() {
       const { toggle } = this

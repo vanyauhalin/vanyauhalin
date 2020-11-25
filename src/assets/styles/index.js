@@ -5,6 +5,7 @@ import './base/fonts.scss'
 import './base/normalize.scss'
 
 // Blocks styles
+import './blocks/animations.scss'
 import './blocks/btn.scss'
 import './blocks/hd.scss'
 import './blocks/line.scss'
