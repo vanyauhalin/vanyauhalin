@@ -3,7 +3,7 @@ const state = {
   filter: {
     stack: {
       selected: [],
-      items: ['Vue.js', 'Scss', 'sdfsd', 'Boot', 'asd', '1312', 'asdasda']
+      items: ['Vue.js', 'Scss']
     }
   },
   ctx: [{

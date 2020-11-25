@@ -23,11 +23,6 @@ const state = {
   }]
 }
 
-const getters = {
-  GET_CONTACTS_CTX: (state) => state.ctx
-}
-
 export default {
-  state,
-  getters
+  state
 }

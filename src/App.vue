@@ -11,17 +11,13 @@
           <SectionSkills />
           <hr class="line">
           <SectionTemplate
-            :name="name[0]"
-            :title="title(name[0])"
-            :ctx="ctx(name[0])"
+            v-for="section in sections"
+            :key="section.name"
+            :name="section.name"
+            :title="title(section.name)"
+            :ctx="ctx(section.name)"
+            :filter="section.filter"
           />
-          <hr class="line">
-          <SectionTemplate
-            :name="name[1]"
-            :title="title(name[1])"
-            :ctx="ctx(name[1])"
-          />
-          <hr class="line">
           <SectionContacts />
         </main>
       </div>
@@ -49,7 +45,12 @@ export default {
   },
   data() {
     return {
-      name: ['projects', 'experience']
+      sections: [{
+        name: 'projects',
+        filter: true
+      }, {
+        name: 'experience'
+      }]
     }
   },
   computed: {

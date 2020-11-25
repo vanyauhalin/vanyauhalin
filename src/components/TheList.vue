@@ -1,5 +1,5 @@
 <template>
-  <ul>
+  <ul class="list">
     <li
       class="item"
       v-for="item in ctx"
@@ -85,8 +85,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.item {
+.list {
   width: 65%;
+}
+
+.item {
   margin-bottom: $mg-1 + $mg-2;
   padding-left: $list-pd;
 

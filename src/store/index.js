@@ -28,7 +28,11 @@ const store = new Vuex.Store({
     GET_TITLE: (state) => (name) => getModule(state, name).title,
     GET_CTX: (state) => (name) => {
       const mod = getModule(state, name)
+
+      if (typeof mod.filter === 'undefined') return mod.ctx
+
       const tag = { name: getTag(mod.filter) }
+
       tag.selected = mod.filter[tag.name].selected
 
       if (tag.selected.length === 0) return mod.ctx

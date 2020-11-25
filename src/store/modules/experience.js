@@ -1,11 +1,5 @@
 const state = {
   title: 'Опыт',
-  filter: {
-    experience: {
-      selected: [],
-      items: ['Обучение']
-    }
-  },
   ctx: [{
     name: 'Российский новый университет',
     description: [

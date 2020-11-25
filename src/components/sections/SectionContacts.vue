@@ -7,7 +7,7 @@
       <ul>
         <li
           class="contacts__item"
-          v-for="item in ctx"
+          v-for="item in ctx(name)"
           :key="item.name"
         >
           <span class="marker" />
@@ -115,7 +115,7 @@ export default {
   computed: {
     ...mapGetters({
       title: 'GET_TITLE',
-      ctx: 'GET_CONTACTS_CTX'
+      ctx: 'GET_CTX'
     })
   },
   mounted() {

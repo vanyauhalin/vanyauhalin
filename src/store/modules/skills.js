@@ -41,11 +41,6 @@ const state = {
   }]
 }
 
-const getters = {
-  GET_SKILLS_CTX: (state) => state.ctx
-}
-
 export default {
-  state,
-  getters
+  state
 }

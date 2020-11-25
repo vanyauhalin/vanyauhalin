@@ -5,7 +5,7 @@
     </h2>
     <ul class="skills__groups">
       <li
-        v-for="group in ctx"
+        v-for="group in ctx(name)"
         :key="group.name"
       >
         <h3 class="hd hd_l_3">
@@ -46,7 +46,7 @@ export default {
   computed: {
     ...mapGetters({
       title: 'GET_TITLE',
-      ctx: 'GET_SKILLS_CTX'
+      ctx: 'GET_CTX'
     })
   }
 }

@@ -48,6 +48,7 @@
       </transition>
       <button
         :class="toggle.class"
+        :disabled="warning.status"
         @click="changeListDisplay"
       >
         <JamIcons
@@ -103,12 +104,16 @@ export default {
       status: false,
       class: 'filter__container'
     },
+    warning: {
+      status: false
+    },
     ctx: {},
     list: {
       class: 'filter__list',
       items: [],
       selected: false
     },
+    hg: {},
     toggle: {
       class: 'filter__button',
       width: 18,
@@ -134,6 +139,8 @@ export default {
   },
   mounted() {
     this.setContainer()
+    this.setWarning()
+    this.setCtx()
     this.setList()
   },
   methods: {
@@ -152,13 +159,15 @@ export default {
         el: this.$el.getElementsByClassName(this.container.class)[0]
       }
     },
+    setWarning() {
+      this.warning = {
+        ...JSON.parse(JSON.stringify(this.warning)),
+        el: this.$parent.$el.getElementsByClassName('section__warning')[0]
+      }
+    },
     setCtx() {
-      this.containerTransition()
-
-      const el = this.$parent.$el.children[1]
       this.ctx = {
-        el,
-        hg: el.offsetHeight
+        el: this.$parent.$el.getElementsByClassName('list')[0]
       }
     },
     setList() {
@@ -168,11 +177,15 @@ export default {
         items: this.tag(this.name)
       }
     },
-    setListHg() {
-      this.list = {
-        ...JSON.parse(JSON.stringify(this.list)),
-        hg: this.list.el.offsetHeight
+    setHg() {
+      this.containerTransition()
+
+      this.hg = {
+        ctx: this.ctx.el.offsetHeight,
+        list: this.list.el.offsetHeight
       }
+
+      this.isMounted = true
     },
 
     /**
@@ -183,38 +196,58 @@ export default {
     containerTransition() {
       this.container.el.setAttribute('style', 'display: block', 'opacity: 0')
     },
-    ctxTransition() {
-      if (this.list.hg > this.ctx.hg) {
-        const from = {
-          minHeight: this.ctx.hg
-        }
-        const to = {
-          minHeight: this.list.hg,
-          duration: this.duration
-        }
-
-        this.container.status
-          ? gsap.fromTo(this.ctx.el, to, from)
-          : gsap.fromTo(this.ctx.el, from, to)
+    warningTransition() {
+      function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms))
       }
+
+      delay(10).then(() => {
+        this.warning.status = this.ctx.el.childElementCount === 0
+
+        this.warning.status
+          ? this.warning.el.setAttribute('style', 'display: block')
+          : this.warning.el.setAttribute('style', 'display: none')
+      })
+    },
+    ctxTransition() {
+      const {
+        container, ctx, hg, duration
+      } = this
+      const from = { duration, minHeight: hg.ctx }
+      const to = { duration, minHeight: hg.list }
+
+      container.status
+        ? gsap.fromTo(ctx.el, to, from)
+        : gsap.fromTo(ctx.el, from, to)
     },
     listTransition() {
+      const { container, duration } = this
+
       const from = {
         display: 'none',
         opacity: 0,
         x: '10%',
-        duration: this.duration / 2
+        duration: duration / 2
       }
       const to = {
         display: 'block',
         opacity: 1,
         x: '0%',
-        duration: this.duration / 2
+        duration: duration / 2
       }
 
-      this.container.status
-        ? gsap.fromTo(this.container.el, to, from)
-        : gsap.fromTo(this.container.el, from, to)
+      container.status
+        ? gsap.fromTo(container.el, to, from)
+        : gsap.fromTo(container.el, from, to)
+    },
+    jointTransition() {
+      const { hg } = this
+
+      if (hg.list > hg.ctx) this.ctxTransition()
+
+      this.listTransition()
+
+      this.container.status = !this.container.status
     },
 
     /**
@@ -223,27 +256,23 @@ export default {
      */
 
     changeListDisplay() {
-      if (!this.isMounted) {
-        this.setCtx()
-        this.setListHg()
+      if (this.warning.status) return
+      if (!this.isMounted) this.setHg()
 
-        this.isMounted = !this.isMounted
-      }
-
-      this.ctxTransition()
-      this.listTransition()
-
-      this.container.status = !this.container.status
+      this.jointTransition()
     },
     resetFilter() {
       this.selected = []
 
+      this.jointTransition()
       this.filtering({ name: this.name, selected: this.selected })
     }
   },
   watch: {
     selected() {
       this.list.selected = this.selected.length > 0
+
+      this.warningTransition()
     }
   }
 }
