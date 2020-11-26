@@ -26,7 +26,11 @@
       <transition name="contacts__form_tr_fade">
         <form
           :class="form.class"
-          v-if="!farewell.status"
+          enctype="text/plain"
+          :action="form.action"
+          :target="iframe.name"
+          @submit="submitForm"
+          v-if="!form.submit"
         >
           <input
             class="contacts__input"
@@ -45,17 +49,15 @@
             :rows="textarea.rows.current"
             required
           />
-          <!-- @click="setFarewell" -->
-          <!-- type="button" -->
-          <button
+          <input
             class="btn contacts__btn"
+            type="submit"
+            value="Отправить"
           >
-            Отправить
-          </button>
         </form>
         <div
           class="contacts__farewell"
-          :style="`height: ${farewell.height}px; width: ${farewell.width}px`"
+          :style="`width: ${farewell.width}px; height: ${farewell.height}px`"
           v-else
         >
           <p
@@ -67,6 +69,10 @@
           </p>
         </div>
       </transition>
+      <iframe
+        :name="iframe.name"
+        class="contacts__iframe"
+      />
     </div>
   </section>
 </template>
@@ -81,22 +87,24 @@ export default {
     return {
       name: 'contacts',
       form: {
-        class: 'contacts__form'
+        class: 'contacts__form',
+        action: 'https://docs.google.com/forms/d/e/1FAIpQLSfkWDRa0g0Hcijp0-XMxHItxwQqu5fcIuc2EEdg9VoTR_LD2Q/formResponse?',
+        submit: false
       },
       inputs: [{
-        name: 'name',
+        name: 'entry.1207988625',
         placeholder: 'Ваше Имя'
       }, {
-        name: 'email',
+        name: 'entry.95353332',
         placeholder: 'Ваше Email',
         pattern: /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
       }, {
-        name: 'subject',
+        name: 'entry.674518323',
         placeholder: 'Тема'
       }],
       textarea: {
+        name: 'entry.1271337848',
         class: 'contacts__textarea',
-        name: 'message',
         placeholder: 'Сообщение',
         rows: {
           current: 3,
@@ -104,11 +112,16 @@ export default {
         }
       },
       farewell: {
-        status: false,
-        height: 0,
         width: 0,
-        class: '',
-        ctx: ['Благодарю Вас за оставленное предложение!', 'Я свяжусь с Вами в ближайшее время.', ':)']
+        height: 0,
+        ctx: [
+          'Благодарю Вас за оставленное предложение!',
+          'Я свяжусь с Вами в ближайшее время.',
+          ':)'
+        ]
+      },
+      iframe: {
+        name: 'gform-iframe'
       }
     }
   },
@@ -155,11 +168,11 @@ export default {
         })
       })
     },
-    setFarewell() {
+    submitForm() {
       const form = document.getElementsByClassName(this.form.class)[0]
-      this.farewell.height = form.offsetHeight
       this.farewell.width = form.offsetWidth
-      this.farewell.status = true
+      this.farewell.height = form.offsetHeight
+      this.form.submit = true
     }
   }
 }
@@ -167,6 +180,8 @@ export default {
 
 <style lang="scss" scoped>
 .contacts__main {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
 }
@@ -181,6 +196,18 @@ export default {
   &:last-of-type {
     margin-bottom: 0;
   }
+}
+
+.contacts__form_tr_fade-enter-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  animation: fade $sec-1 ease-in-out;
+}
+
+.contacts__form_tr_fade-leave-active {
+  animation: fade $sec-1 ease-in-out reverse;
 }
 
 .contacts__form {
@@ -216,11 +243,9 @@ export default {
 }
 
 .contacts__btn {
-  grid-column: 3;
-}
+  cursor: pointer;
 
-.contacts__form_tr_fade-enter-active {
-  animation: fade $sec-1 ease-in-out;
+  grid-column: 3;
 }
 
 .contacts__farewell {
@@ -237,5 +262,9 @@ export default {
 
 .contacts__pr {
   color: var(--cl-neutral-01);
+}
+
+.contacts__iframe {
+  display: none;
 }
 </style>
