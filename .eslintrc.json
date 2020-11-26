@@ -10,23 +10,17 @@
     "eslint:recommended",
     "airbnb-base",
     "plugin:vue/strongly-recommended"
-    // "@vue/prettier"
   ],
   "rules": {
     // Possible Errors
     "no-await-in-loop": "error",
     "no-extra-parens": "error",
     "no-template-curly-in-string": "error",
-    // "no-unreachable-loop": "error",
     "require-atomic-updates": "error",
 
     // Best Practices
-    // "consistent-return": ["error", {
-    //   "treatUndefinedAsUnspecified": true
-    // }],
     "curly": ["error", "multi-line"],
     "default-case": "error",
-    // "default-case-last": "error",
     "default-param-last": "error",
     "no-empty-function": "error",
     "no-eq-null": "error",
@@ -36,7 +30,6 @@
     "no-magic-numbers": "warn",
     "no-multi-spaces": "error",
     "no-multi-str": "error",
-    // "no-new": "error",
     "no-octal-escape": "error",
     "no-param-reassign": ["error", {
       "props": true,
@@ -61,10 +54,6 @@
     "no-use-before-define": "error",
 
     // Stylistic Issues
-    // "array-bracket-newline": ["error", {
-    //   "multiline": true,
-    //   "minItems": 2
-    // }],
     "capitalized-comments": "error",
     "comma-dangle": ["error", "never"],
     "func-name-matching": "error",
@@ -72,10 +61,7 @@
     "function-call-argument-newline": ["error", "never"],
     "line-comment-position": ["error", { "position": "above" }],
     "lines-around-comment": ["error", { "beforeBlockComment": true }],
-    "max-len": ["warn", { "code": 120
-      // "ignorePattern": "<path([\\s\\S]*?)/>"
-    }],
-    // "multiline-comment-style": ["error", "starred-block"],
+    "max-len": ["warn", { "code": 120 }],
     "multiline-ternary": ["error", "always-multiline"],
     "new-parens": "error",
     "no-bitwise": "error",
@@ -83,7 +69,6 @@
     "no-negated-condition": "error",
     "operator-assignment": ["error", "always"],
     "semi": ["error", "never"],
-    // "sort-keys": "error",
     "space-unary-ops": "error",
     "switch-colon-spacing": "error",
     "template-tag-spacing": ["error", "always"],
@@ -91,12 +76,8 @@
     // ECMAScript 6
     "no-useless-computed-key": "error",
     "no-useless-rename": "error",
-    // "sort-imports": "error",
 
     // Other
-    // "import/extensions": ["error", "always", {
-    //   "ignorePackages": true
-    // }],
     "import/no-unresolved": ["error", {
       "ignore": ["images", "scripts", "styles", "components"]
     }],
