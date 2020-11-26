@@ -14,6 +14,7 @@
 
 <script>
 import { gsap } from 'gsap'
+import { duration } from 'scripts/variables'
 
 export default {
   name: 'DropdownToggle',
@@ -26,8 +27,7 @@ export default {
           current: 'chevron-down',
           close: 'close'
         }
-      },
-      duration: 0.9
+      }
     }
   },
   props: {
@@ -117,8 +117,8 @@ export default {
     containerTransition({ animation = true } = {}) {
       const { container } = this
       const to = {
-        height: container.reverse ? container.height.min : container.height.max,
-        duration: this.duration
+        duration,
+        height: container.reverse ? container.height.min : container.height.max
       }
 
       if (animation) {
@@ -149,7 +149,7 @@ export default {
           enter: 0,
           leave: this.container.reverse ? -3 : 3
         },
-        duration: this.duration / 2
+        duration: duration / 2
       }
       const from = {
         opacity: options.opacity.enter,

@@ -95,6 +95,7 @@
 <script>
 import { gsap } from 'gsap'
 import { mapGetters, mapMutations } from 'vuex'
+import { duration } from 'scripts/variables'
 
 export default {
   name: 'TheFilter',
@@ -123,8 +124,7 @@ export default {
         clear: 'close'
       }
     },
-    selected: [],
-    duration: 0.9
+    selected: []
   }),
   props: {
     name: {
@@ -210,9 +210,7 @@ export default {
       })
     },
     ctxTransition() {
-      const {
-        container, ctx, hg, duration
-      } = this
+      const { container, ctx, hg } = this
       const from = { duration, minHeight: hg.ctx }
       const to = { duration, minHeight: hg.list }
 
@@ -221,7 +219,7 @@ export default {
         : gsap.fromTo(ctx.el, from, to)
     },
     listTransition() {
-      const { container, duration } = this
+      const { container } = this
 
       const from = {
         display: 'none',
