@@ -13,7 +13,7 @@
     font-size: $fs-1;
     line-height: $lh-1;
 
-    margin-bottom: 22px;
+    margin-bottom: $mg-1;
 
     letter-spacing: converter(15, $fs-1);
   }
@@ -22,7 +22,7 @@
     font-size: $fs-2;
     line-height: $lh-2;
 
-    margin-bottom: $mg-1 * 2;
+    margin-bottom: $mg-2 * 2;
 
     letter-spacing: converter(14, $fs-2);
   }
@@ -32,7 +32,7 @@
     font-weight: $fw-2;
     line-height: $lh-3;
 
-    margin-bottom: $mg-2;
+    margin-bottom: $mg-3;
 
     letter-spacing: converter(12, $fs-3);
 

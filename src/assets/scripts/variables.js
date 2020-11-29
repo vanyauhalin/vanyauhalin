@@ -12,3 +12,10 @@ export const line = {
   bottom: 28,
   minified: 18.5
 }
+
+export const breakpoints = {
+  // Main width with right border + AppNavbar width (from App.vue)
+  wd: 856 + border + 100,
+  // Breakpoint for AppNavbar height
+  hg: 610
+}

@@ -10,7 +10,8 @@ const isProd = event === 'build'
 
 const root = {
   assets: (slug) => path.resolve(__dirname, `src/assets/${slug}`),
-  components: () => path.resolve(__dirname, 'src/components')
+  components: (slug) => path.resolve(__dirname, `src/components/${slug}`),
+  mixins: () => path.resolve(__dirname, 'src/mixins')
 }
 
 module.exports = {
@@ -20,7 +21,9 @@ module.exports = {
       alias: {
         images: root.assets('images'),
         scripts: root.assets('scripts'),
-        styles: root.assets('styles')
+        styles: root.assets('styles'),
+        default: root.components('default'),
+        mixins: root.mixins()
       }
     },
     plugins: [

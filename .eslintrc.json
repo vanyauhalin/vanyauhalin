@@ -79,7 +79,7 @@
 
     // Other
     "import/no-unresolved": ["error", {
-      "ignore": ["images", "scripts", "styles", "components"]
+      "ignore": ["images", "scripts", "styles", "default", "mixins"]
     }],
     "import/order": ["error", {
       "newlines-between": "always-and-inside-groups"
