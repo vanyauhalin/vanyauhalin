@@ -1,0 +1,21 @@
+/**
+ * =============================================================================
+ * App
+ * =============================================================================
+ */
+
+.app__main {
+  overflow-x: hidden;
+  overflow-y: overlay;
+
+  background-color: var(--cl-neutral-01);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    outline: $main-br solid var(--cl-neutral-03);
+    background-color: var(--cl-neutral-03);
+  }
+}

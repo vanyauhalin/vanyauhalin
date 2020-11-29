@@ -1,0 +1,39 @@
+/**
+ * =============================================================================
+ * Navbar
+ * =============================================================================
+ */
+
+.navbar {
+  background-color: var(--cl-neutral-06);
+
+  .navbar__link {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      > .navbar__icon,
+      > .navbar__pr {
+        color: var(--cl-neutral-01);
+      }
+    }
+  }
+
+  .navbar__link_active_true {
+    > .navbar__icon,
+    > .navbar__pr {
+      color: var(--cl-neutral-01);
+    }
+  }
+
+  .navbar__icon {
+    display: flex;
+  }
+
+  .navbar__icon,
+  .navbar__pr {
+    transition: color $sec-1 ease-in-out;
+
+    color: var(--cl-neutral-04);
+  }
+}

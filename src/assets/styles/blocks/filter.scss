@@ -1,0 +1,151 @@
+/**
+ * =============================================================================
+ * Filter
+ * =============================================================================
+ */
+
+$indicator-wd: 10px;
+$indicator-br: 2px;
+
+/**
+ * Header
+ * -----------------------------------------------------------------------------
+ */
+
+.filter__header {
+  display: flex;
+  align-items: center;
+}
+
+.filter__header-item_tr_fade-enter-active {
+  animation: fade $sec-1 ease-in-out;
+}
+
+.filter__header-item_tr_fade-leave-active {
+  animation: fade $sec-1 ease-in-out reverse;
+}
+
+.filter__separator {
+  margin: 0 $mg-2;
+}
+
+.filter__separator_gap-minified {
+  margin-left: $mg-2 / 2;
+}
+
+.filter__button {
+  display: flex;
+
+  padding: 0;
+
+  transition: transform $sec-1 ease-in-out;
+
+  color: var(--cl-neutral-07);
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
+/**
+ * List
+ * -----------------------------------------------------------------------------
+ */
+
+.filter__container {
+  position: absolute;
+  z-index: 1;
+  top: $lh-2 + $mg-2 * 2;
+  right: 0;
+  bottom: 0;
+
+  display: none;
+  overflow: hidden;
+
+  background-color: var(--cl-neutral-01);
+}
+
+.filter__list {
+  display: grid;
+
+  row-gap: $mg-3;
+  grid-template-columns: repeat(2, 50%);
+}
+
+.filter__list-item {
+  display: flex;
+
+  padding-left: $list-pd;
+}
+
+/**
+ * Label
+ * -----------------------------------------------------------------------------
+ */
+
+.filter__label {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &:hover > .filter__indicator::before {
+    background-color: var(--cl-neutral-04);
+  }
+}
+
+.filter__checkbox {
+  position: absolute;
+  z-index: -1;
+
+  width: $indicator-wd - $indicator-br;
+  height: $indicator-wd - $indicator-br;
+  margin: $indicator-br / 2;
+
+  &:checked + .filter__indicator::after {
+    display: block;
+  }
+}
+
+.filter__indicator {
+  position: relative;
+
+  min-width: $indicator-wd;
+  height: $indicator-wd;
+  margin-right: $mg-2;
+
+  background-color: var(--cl-neutral-04);
+
+  &::before {
+    background-color: var(--cl-neutral-01);
+  }
+
+  &::after {
+    display: none;
+
+    background-color: var(--cl-neutral-04);
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: $indicator-br;
+    left: $indicator-br;
+
+    width: $indicator-wd - $indicator-br * 2;
+    height: $indicator-wd - $indicator-br * 2;
+
+    content: '';
+  }
+}
+
+.filter__pr {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
