@@ -34,12 +34,34 @@ export default {
         },
         line: false
       }],
+      scrollable: {
+        class: 'app__main'
+      },
       link: {
         class: 'navbar__link_active_true'
       }
     }
   },
+  mounted() {
+    this.setScrollable()
+    this.setItems()
+    this.setItemsHg()
+    this.setItemsLink()
+    this.setScrollOptions()
+  },
   methods: {
+
+    /**
+     * Set data about scrollable container
+     * -------------------------------------------------------------------------
+     */
+
+    setScrollable() {
+      this.scrollable = {
+        ...JSON.parse(JSON.stringify(this.scrollable)),
+        el: document.getElementsByClassName(this.scrollable.class)[0]
+      }
+    },
 
     /**
      * Set data about nav
@@ -128,13 +150,6 @@ export default {
 
     setScrollOptions() {
       const key = 'scroll'
-      let options = {}
-
-      if (typeof this.scrollable.class !== 'undefined') {
-        options = {
-          container: `.${this.scrollable.class}`
-        }
-      }
 
       this.setNav(key, (item, index) => {
         let off = 0
@@ -146,8 +161,8 @@ export default {
         if (index === 0) off -= border
 
         return {
-          ...options,
           el: `#${item.anchor}`,
+          container: `.${this.scrollable.class}`,
           duration: (duration / 2) * 1000,
           lazy: false,
           offset: off

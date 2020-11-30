@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="require(`images/avatar.jpg`)"
+    :src="require('images/avatar.jpg')"
     alt="Avatar"
     width="140"
     height="140"

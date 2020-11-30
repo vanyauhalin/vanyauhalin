@@ -30,7 +30,6 @@
       </div>
       <Toggle
         class="item__toggle"
-        eclipse="true"
         :length-max="item.description.length"
       />
     </div>
@@ -130,13 +129,6 @@ export default {
 
   .item__pr {
     margin-bottom: $mg-2;
-
-    &:first-of-type {
-      overflow: hidden;
-
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
 
     &:last-of-type {
       margin-bottom: 0;

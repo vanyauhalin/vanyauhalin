@@ -17,7 +17,7 @@ import { gsap } from 'gsap'
 import { duration } from 'scripts/variables'
 
 export default {
-  name: 'DropdownToggle',
+  name: 'Toggle',
   data() {
     return {
       container: {},
@@ -31,10 +31,6 @@ export default {
     }
   },
   props: {
-    eclipse: {
-      type: [String, Boolean],
-      default: false
-    },
     lengthMin: {
       type: [String, Number],
       default: 1
@@ -121,22 +117,9 @@ export default {
         height: container.reverse ? container.height.min : container.height.max
       }
 
-      if (animation) {
-        if (this.eclipse === 'true') {
-          if (container.reverse) {
-            gsap.to(container.el, to).then(() => {
-              this.childrenTransition({ reverse: !container.reverse })
-            })
-          } else {
-            this.childrenTransition()
-            gsap.to(container.el, to)
-          }
-        } else {
-          gsap.to(container.el, to)
-        }
-      } else {
-        this.container.el.setAttribute('style', `height: ${to.height}px`)
-      }
+      animation
+        ? gsap.to(container.el, to)
+        : container.el.setAttribute('style', `height: ${to.height}px`)
     },
     toggleTransition() {
       const options = {

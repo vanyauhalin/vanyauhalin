@@ -1,12 +1,23 @@
+import { mapGetters } from 'vuex'
+
 export default {
-  data() {
-    return {
-      sections: [{
-        name: 'projects',
-        filter: true
-      }, {
-        name: 'experience'
-      }]
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    filter: {
+      type: Boolean,
+      default: false
+    },
+    line: {
+      type: Boolean,
+      default: true
     }
+  },
+  computed: {
+    ...mapGetters({
+      ctx: 'GET_CTX'
+    })
   }
 }

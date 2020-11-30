@@ -1,5 +1,5 @@
 <template>
-  <div class="section__warning">
+  <div>
     <p class="pr pr_l_1">
       Упс...
     </p>

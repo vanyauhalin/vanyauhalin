@@ -1,5 +1,5 @@
 {
-  "name": "yansultanov",
+  "name": "vanyauhalin",
   "version": "2.0.0",
   "private": true,
   "description": "The website for posting information about projects with my participation, as well as for posting information about me.",
@@ -7,18 +7,18 @@
     "vuejs",
     "vuex"
   ],
-  "homepage": "http://yansultanov.github.io",
+  "homepage": "http://vanyauhalin.github.io",
   "bugs": {
-    "url": "https://github.com/yansultanov/yansultanov/issues"
+    "url": "https://github.com/vanyauhalin/vanyauhalin/issues"
   },
   "license": "UNLICENSED",
   "author": {
-    "name": "Ivan Ukhalin",
-    "url": "https://github.com/yansultanov"
+    "name": "Ivan Uhalin",
+    "url": "https://github.com/vanyauhalin"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yansultanov/yansultanov"
+    "url": "https://github.com/vanyauhalin/vanyauhalin"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

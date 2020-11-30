@@ -33,37 +33,13 @@ import navbar from 'mixins/navbar'
 
 export default {
   name: 'TheNavbar',
-  mixins: [navbar],
-  data() {
-    return {
-      scrollable: {
-        class: 'app__main'
-      }
-    }
-  },
-  mounted() {
-    this.setScrollable()
-    this.setItems()
-    this.setItemsHg()
-    this.setItemsLink()
-    this.setScrollOptions()
-  },
-  methods: {
-    setScrollable() {
-      this.scrollable = {
-        ...JSON.parse(JSON.stringify(this.scrollable)),
-        el: document.getElementsByClassName(this.scrollable.class)[0]
-      }
-    }
-  }
+  mixins: [navbar]
 }
 </script>
 
 <style lang="scss" scoped>
 .navbar {
   height: 100%;
-
-  background-color: var(--cl-neutral-06);
 
   .navbar__nav {
     padding: $main-pd-y $pd-1;

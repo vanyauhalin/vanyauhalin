@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <div class="app__inner">
-      <div class="app__content">
-        <aside class="app__navbar">
+    <div class="app__inner d-app__inner">
+      <div class="d-app__container">
+        <aside class="d-app__navbar">
           <TheNavbar />
         </aside>
-        <main class="app__main">
+        <main class="app__main d-app__main">
           <SectionsAbout />
           <hr class="line line_gap_minified">
           <SectionsSkills />
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import sections from 'mixins/sections'
+import app from 'mixins/app'
 
 import SectionsSkills from 'default/sections/skills/index.vue'
-import SectionsContacts from 'default/sections/SectionsContacts.vue'
+import SectionsContacts from 'default/sections/Contacts.vue'
 
-import SectionsAbout from './components/sections/SectionsAbout.vue'
-import SectionsTemplate from './components/sections/SectionsTemplate.vue'
+import SectionsAbout from './components/SectionsAbout.vue'
+import SectionsTemplate from './components/SectionsTemplate.vue'
 import TheNavbar from './components/TheNavbar.vue'
 
 export default {
@@ -42,28 +42,19 @@ export default {
     SectionsTemplate,
     TheNavbar
   },
-  mixins: [sections]
+  mixins: [app]
 }
 </script>
 
 <style lang="scss" scoped>
-.app__inner {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  overflow: hidden;
+.d-app__inner {
   align-items: center;
   justify-content: center;
-
-  width: 100%;
-  height: 100%;
 
   background-image: linear-gradient(to right, var(--cl-neutral-01) 50%, var(--cl-neutral-06) 0%);
 }
 
-.app__content {
+.d-app__container {
   $content-pd-percent: 100 * 100 / 1080;
   $content-hg: (100 - $content-pd-percent * 2) * 1%;
 
@@ -93,11 +84,11 @@ export default {
   }
 }
 
-.app__navbar {
+.d-app__navbar {
   width: $content-pd;
 }
 
-.app__main {
+.d-app__main {
   box-sizing: border-box;
   width: $main-wd;
   padding: $main-pd-y - $main-br $main-pd-x - $main-br / 2;

@@ -1,37 +1,38 @@
 <template>
   <div id="app">
-    <aside class="app__navbar">
-      <TheNavbar />
-    </aside>
-    <main class="app__main">
-      <SectionsAbout />
-      <hr class="line line_gap_minified">
-      <SectionsSkills />
-      <hr class="line">
-      <SectionsTemplate
-        v-for="section in sections"
-        :key="section.name"
-        :name="section.name"
-        :filter="section.filter"
-      />
-      <SectionsContacts />
-    </main>
+    <div class="app__inner m-app__inner">
+      <aside class="m-app__navbar">
+        <TheNavbar />
+      </aside>
+      <main class="app__main m-app__main">
+        <SectionsAbout />
+        <hr class="line line_gap_minified">
+        <SectionsSkills />
+        <hr class="line">
+        <SectionsTemplate
+          v-for="section in sections"
+          :key="section.name"
+          :name="section.name"
+          :filter="section.filter"
+        />
+        <SectionsContacts />
+      </main>
+    </div>
   </div>
 </template>
 
 <script>
-import sections from 'mixins/sections'
+import app from 'mixins/app'
 
 import SectionsSkills from 'default/sections/skills/index.vue'
-import SectionsContacts from 'default/sections/SectionsContacts.vue'
+import SectionsContacts from 'default/sections/Contacts.vue'
 
+import SectionsAbout from './components/SectionsAbout.vue'
+import SectionsTemplate from './components/SectionsTemplate.vue'
 import TheNavbar from './components/TheNavbar.vue'
 
-import SectionsAbout from './components/sections/SectionsAbout.vue'
-import SectionsTemplate from './components/sections/SectionsTemplate.vue'
-
 export default {
-  name: 'App',
+  name: 'AppMobile',
   components: {
     SectionsSkills,
     SectionsContacts,
@@ -39,13 +40,20 @@ export default {
     SectionsTemplate,
     TheNavbar
   },
-  mixins: [sections]
+  mixins: [app]
 }
 </script>
 
 <style lang="scss" scoped>
-.app__main {
+.m-app__inner {
+  flex-direction: column;
+}
+
+.m-app__navbar {
+  order: 1;
+}
+
+.m-app__main {
   padding: ($main-pd-x - $main-br / 2) / 2 $main-pd-y - $main-br;
-  margin-bottom: $pd-1 * 2 + 28px;
 }
 </style>

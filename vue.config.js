@@ -3,8 +3,6 @@ const path = require('path')
 const ImageminMozjpeg = require('imagemin-mozjpeg')
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default
 
-const pack = require('./package.json')
-
 const event = process.env.npm_lifecycle_event ? process.env.npm_lifecycle_event : ''
 const isProd = event === 'build'
 
@@ -15,7 +13,7 @@ const root = {
 }
 
 module.exports = {
-  publicPath: isProd ? `/${pack.name}/` : '/',
+  publicPath: '/',
   configureWebpack: {
     resolve: {
       alias: {

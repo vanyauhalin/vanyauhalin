@@ -30,36 +30,15 @@ import navbar from 'mixins/navbar'
 
 export default {
   name: 'TheNavbar',
-  mixins: [navbar],
-  data() {
-    return {
-      scrollable: {
-        el: document.getElementsByTagName('body')[0]
-      }
-    }
-  },
-  mounted() {
-    this.setItems()
-    this.setItemsHg()
-    this.setItemsLink()
-    this.setScrollOptions()
-  }
+  mixins: [navbar]
 }
 </script>
 
 <style lang="scss" scoped>
-.navbar {
-  position: fixed;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.navbar__nav {
+  display: flex;
+  justify-content: space-between;
 
-  .navbar__nav {
-    display: flex;
-    justify-content: space-between;
-
-    padding: $pd-1;
-  }
+  padding: $pd-1;
 }
 </style>
