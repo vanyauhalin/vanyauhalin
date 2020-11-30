@@ -1,0 +1,21 @@
+/**
+ * =============================================================================
+ * Sections
+ * =============================================================================
+ */
+
+.section {
+  position: relative;
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: $mg-2 * 2;
+}
+
+.section__warning {
+  display: none;
+}
