@@ -4,8 +4,8 @@
       <span class="marker item__marker" />
       <a
         class="pr pr_l_1 pr_theme_highlighted"
-        v-if="item.view"
-        :href="item.view"
+        v-if="item.tags.view"
+        :href="item.tags.view"
         target="_blank"
       >
         {{ item.name }}

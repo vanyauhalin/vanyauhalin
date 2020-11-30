@@ -6,6 +6,7 @@
           :class="toggle.class"
           v-if="list.selected"
           @click="resetFilter"
+          :aria-label="toggle.label.clear"
         >
           <JamIcons
             :name="toggle.icon.clear"
@@ -26,6 +27,7 @@
         :class="toggle.class"
         :disabled="warning.status"
         @click="changeListDisplay"
+        :aria-label="toggle.label.filter"
       >
         <JamIcons
           :name="toggle.icon.filter"

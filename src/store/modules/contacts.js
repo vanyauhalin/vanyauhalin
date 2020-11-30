@@ -2,16 +2,16 @@ const state = {
   title: 'Контакты',
   ctx: [{
     name: 'GitHub',
-    link: 'https://github.com/yansultanov',
-    preview: '@yansultanov'
+    link: 'https://github.com/vanyauhalin',
+    preview: '@vanyauhalin'
   }, {
     name: 'Telegram',
-    link: 'http://t.me/yansultanov',
-    preview: '@yansultanov'
+    link: 'http://t.me/vanyauhalin',
+    preview: '@vanyauhalin'
   }, {
     name: 'VK',
-    link: 'http://vk.com/yansultanov',
-    preview: '@yansultanov'
+    link: 'http://vk.com/vanyauhalin',
+    preview: '@vanyauhalin'
   }, {
     name: 'Email',
     link: 'mailto:ivan.uhalin@gmail.com',

@@ -18,6 +18,7 @@
               class="pr pr_l_1"
               :href="item.link"
               target="_blank"
+              :aria-label="item.name"
             >
               {{ item.preview }}
             </a>

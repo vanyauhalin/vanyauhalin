@@ -28,6 +28,10 @@ export default {
       },
       hg: {},
       toggle: {
+        label: {
+          filter: 'Фильтр',
+          clear: 'Очистить фильтр'
+        },
         class: 'filter__button',
         width: 18,
         height: 18,

@@ -20,23 +20,24 @@ const state = {
   }, {
     name: 'Инструменты',
     tools: [
-      { name: 'Photoshop', progress: 70 },
-      { name: 'XD', progress: 60 },
+      { name: 'Photoshop', progress: 60 },
+      { name: 'XD', progress: 50 },
       { name: 'Figma', progress: 50 },
-      { name: 'VsCode', progress: 70 }
+      { name: 'VsCode', progress: 60 }
     ]
   }, {
     name: 'Дополнительно',
     tools: [
       { name: 'Git', progress: 10 },
-      { name: 'Webpack', progress: 10 }
+      { name: 'Webpack', progress: 10 },
+      { name: 'UML', progress: 70 }
     ]
   }, {
     name: 'Backend',
     tools: [
       { name: 'MySQL', progress: 10 },
-      { name: 'Node.js', progress: 30 },
-      { name: 'Nuxt.js', progress: 30 }
+      { name: 'Node.js', progress: 20 },
+      { name: 'Nuxt.js', progress: 20 }
     ]
   }]
 }

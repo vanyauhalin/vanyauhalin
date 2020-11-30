@@ -7,23 +7,23 @@ export default {
     return {
       nav: [{
         icon: 'user-square',
-        name: 'About',
+        name: 'Обо мне',
         anchor: 'about'
       }, {
         icon: 'keyboard',
-        name: 'Skills',
+        name: 'Навыки',
         anchor: 'skills'
       }, {
         icon: 'merge',
-        name: 'Projects',
+        name: 'Проекты',
         anchor: 'projects'
       }, {
         icon: 'universe',
-        name: 'Experience',
+        name: 'Опыт',
         anchor: 'experience'
       }, {
         icon: 'envelope',
-        name: 'Contacts',
+        name: 'Контакты',
         anchor: 'contacts',
         line: false
       }],

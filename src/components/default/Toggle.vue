@@ -3,6 +3,7 @@
     class="toggle"
     v-if="toggle.status"
     @click="changeContainerHeight"
+    :aria-label="toggle.label"
   >
     <JamIcons
       :name="toggle.icon.current"
@@ -23,6 +24,7 @@ export default {
       container: {},
       toggle: {
         status: true,
+        label: 'Подробнее',
         icon: {
           current: 'chevron-down',
           close: 'close'

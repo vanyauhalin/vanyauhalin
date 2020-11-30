@@ -11,6 +11,7 @@
           :class="setClassLink(item.active)"
           href="#"
           v-scroll-to="item.scroll"
+          :aria-label="item.name"
         >
           <div class="navbar__icon">
             <JamIcons

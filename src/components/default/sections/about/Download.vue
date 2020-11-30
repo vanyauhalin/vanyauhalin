@@ -1,6 +1,6 @@
 <template>
   <button class="btn">
-    Download
+    Скачать резюме
   </button>
 </template>
 
