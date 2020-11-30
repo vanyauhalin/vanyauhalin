@@ -34,14 +34,14 @@ export default {
 .skills__groups {
   display: grid;
 
-  row-gap: $mg-2;
+  grid-row-gap: $mg-2;
 
   @include for-desktop-only {
     $groups-col: 3;
     $groups-gap-col: 34px;
     $groups-wd: calc((100% - #{$groups-gap-col} * #{$groups-col - 1}) / #{$groups-col});
 
-    column-gap: $groups-gap-col;
+    grid-column-gap: $groups-gap-col;
     grid-template-columns: repeat($groups-col, $groups-wd);
   }
 }

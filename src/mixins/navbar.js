@@ -1,5 +1,5 @@
 import {
-  duration, border, padding, line
+  duration, border, line
 } from 'scripts/variables'
 
 export default {
@@ -8,11 +8,7 @@ export default {
       nav: [{
         icon: 'user-square',
         name: 'About',
-        anchor: 'about',
-        offset: {
-          top: padding - border,
-          bottom: line.minified
-        }
+        anchor: 'about'
       }, {
         icon: 'keyboard',
         name: 'Skills',
@@ -29,39 +25,14 @@ export default {
         icon: 'envelope',
         name: 'Contacts',
         anchor: 'contacts',
-        offset: {
-          bottom: padding - border
-        },
         line: false
       }],
-      scrollable: {
-        class: 'app__main'
-      },
       link: {
         class: 'navbar__link_active_true'
       }
     }
   },
-  mounted() {
-    this.setScrollable()
-    this.setItems()
-    this.setItemsHg()
-    this.setItemsLink()
-    this.setScrollOptions()
-  },
   methods: {
-
-    /**
-     * Set data about scrollable container
-     * -------------------------------------------------------------------------
-     */
-
-    setScrollable() {
-      this.scrollable = {
-        ...JSON.parse(JSON.stringify(this.scrollable)),
-        el: document.getElementsByClassName(this.scrollable.class)[0]
-      }
-    },
 
     /**
      * Set data about nav
@@ -73,7 +44,7 @@ export default {
 
       this.nav.forEach((item, index) => {
         nav.push({
-          ...this.nav[index],
+          ...item,
           [key]: value(item, index)
         })
       })
@@ -89,26 +60,70 @@ export default {
     setItems() {
       this.setNav('el', (item) => document.getElementById(item.anchor))
     },
+    setItemsOffset() {
+      const key = 'offset'
+      const nav = []
+
+      this.nav.forEach((item, index) => {
+        switch (index) {
+          case 0: {
+            nav.push({
+              ...item,
+              [key]: this.offset[0]
+            })
+
+            break
+          }
+          case this.nav.length - 1: {
+            nav.push({
+              ...item,
+              [key]: this.offset[1]
+            })
+
+            break
+          }
+          default: {
+            nav.push({
+              ...item
+            })
+
+            break
+          }
+        }
+      })
+
+      this.nav = nav
+    },
     setItemsHg() {
       const key = 'hg'
 
-      this.setNav(key, (item) => this.setItemsOffset(item) + item.el.clientHeight)
-      this.setItemsEvent(key, (item) => this.setItemsOffset(item) + item.el.clientHeight)
+      this.setNav(key, (item) => this.calcItemsOffset(item) + item.el.clientHeight)
+      this.setItemsEvent(key, (item) => this.calcItemsOffset(item) + item.el.clientHeight)
     },
-    setItemsLink() {
+    setItemsActive() {
       const key = 'active'
 
-      this.setNav(key, (item, index) => this.setItemsActive(index))
-      this.setItemsEvent(key, (item, index) => this.setItemsActive(index))
+      this.setNav(key, (item, index) => this.getItemsStatus(index))
+      this.setItemsEvent(key, (item, index) => this.getItemsStatus(index))
     },
     setItemsEvent(key, value) {
       this.nav.forEach((item, index) => {
-        this.scrollable.el.addEventListener('scroll', () => {
+        const el = typeof this.scrollable === 'undefined'
+          ? document
+          : this.scrollable.el
+
+        el.addEventListener('scroll', () => {
           this.nav[index][key] = value(item, index)
         })
       })
     },
-    setItemsOffset(item) {
+
+    /**
+     * Other
+     * -------------------------------------------------------------------------
+     */
+
+    calcItemsOffset(item) {
       let offset = 0
 
       if (typeof item.offset === 'undefined') {
@@ -124,20 +139,22 @@ export default {
 
       return offset
     },
-    setItemsActive(index) {
-      const { el } = this.scrollable
+    getItemsStatus(index) {
       const { hg } = this.nav[index]
+      const scroll = typeof this.scrollable === 'undefined'
+        ? window.scrollY
+        : this.scrollable.el.scrollTop
 
       let active = false
 
       if (typeof this.nav[index - 1] === 'undefined') {
-        active = el.scrollTop < hg || el.scrollTop === hg
+        active = scroll < hg || scroll === hg
       } else {
         let fullHg = 0
 
         for (let n = 0; n < index; n += 1) fullHg += this.nav[n].hg
 
-        active = el.scrollTop > fullHg && (el.scrollTop < fullHg + hg || el.scrollTop === fullHg)
+        active = scroll > fullHg && (scroll < fullHg + hg || scroll === fullHg)
       }
 
       return active
@@ -151,21 +168,27 @@ export default {
     setScrollOptions() {
       const key = 'scroll'
 
-      this.setNav(key, (item, index) => {
+      this.setNav(key, (item) => {
         let off = 0
 
-        item.offset === 'undefined' && typeof item.offset.top === 'undefined'
-          ? off = -item.offset.top
-          : off = -line.bottom
+        if (typeof item.offset === 'undefined') {
+          off = line.bottom
+        } else {
+          typeof item.offset.top === 'undefined'
+            ? off = line.bottom
+            : off = item.offset.top
+        }
 
-        if (index === 0) off -= border
+        if (this.border) off += border
 
         return {
+          container: typeof this.scrollable === 'undefined'
+            ? 'body'
+            : this.scrollable.container,
           el: `#${item.anchor}`,
-          container: `.${this.scrollable.class}`,
           duration: (duration / 2) * 1000,
           lazy: false,
-          offset: off
+          offset: -off
         }
       })
     },

@@ -26,11 +26,30 @@
 </template>
 
 <script>
+import { padding, line } from 'scripts/variables'
+
 import navbar from 'mixins/navbar'
 
 export default {
   name: 'TheNavbar',
-  mixins: [navbar]
+  mixins: [navbar],
+  data() {
+    return {
+      offset: [{
+        top: padding.m,
+        bottom: line.minified
+      }, {
+        bottom: padding.m
+      }]
+    }
+  },
+  mounted() {
+    this.setItems()
+    this.setItemsOffset()
+    this.setItemsHg()
+    this.setItemsActive()
+    this.setScrollOptions()
+  }
 }
 </script>
 

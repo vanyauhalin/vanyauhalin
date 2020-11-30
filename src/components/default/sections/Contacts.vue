@@ -186,20 +186,20 @@ export default {
 
 <style lang="scss" scoped>
 .contacts__main {
-  position: relative;
-
   @include for-desktop-only {
     display: flex;
     justify-content: space-between;
   }
+
+  position: relative;
 }
 
 .contacts__list {
-  margin-bottom: $mg-1;
-
   @include for-desktop-only {
     margin: 0;
   }
+
+  margin-bottom: $mg-1;
 }
 
 .contacts__item {
@@ -227,26 +227,27 @@ export default {
 }
 
 .contacts__form {
+  @include for-desktop-only {
+    grid-template: 'name email subject' auto
+    'message message message' auto
+    '. . button' auto / $btn-wd $btn-wd $btn-wd;
+  }
+
   display: grid;
 
-  grid-template:
-    'name' auto
-    'email' auto
-    'subject' auto
-    'message' auto
-    'button' auto / 1fr;
-  gap: $mg-2;
-
-  @include for-desktop-only {
-    grid-template:
-      'name email subject' auto
-      'message message message' auto
-      '. . button' auto / $btn-wd $btn-wd $btn-wd;
-  }
+  grid-template: 'name' auto
+  'email' auto
+  'subject' auto
+  'message' auto
+  'button' auto / 1fr;
+  grid-gap: $mg-2;
 }
 
 .contacts__input,
 .contacts__textarea {
+  // Appearnce must be first! (for Safari on IOS)
+  appearance: none;
+
   font-size: $fs-5;
   font-weight: $fw-2;
   line-height: $lh-5;
@@ -255,6 +256,7 @@ export default {
 
   color: var(--cl-neutral-06);
   border: $btn-br;
+  border-radius: 0;
   background-color: var(--cl-neutral-01);
 
   &::placeholder {

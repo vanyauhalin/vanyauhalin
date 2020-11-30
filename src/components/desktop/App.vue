@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app__inner d-app__inner">
+    <div class="d-app__inner">
       <div class="d-app__container">
         <aside class="d-app__navbar">
           <TheNavbar />
@@ -48,8 +48,16 @@ export default {
 
 <style lang="scss" scoped>
 .d-app__inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+  height: 100%;
 
   background-image: linear-gradient(to right, var(--cl-neutral-01) 50%, var(--cl-neutral-06) 0%);
 }
@@ -89,11 +97,22 @@ export default {
 }
 
 .d-app__main {
+  overflow-x: hidden;
+  overflow-y: overlay;
+
   box-sizing: border-box;
   width: $main-wd;
   padding: $main-pd-y - $main-br $main-pd-x - $main-br / 2;
 
   border: $main-br solid var(--cl-neutral-06);
   border-left: none;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--cl-neutral-03);
+  }
 }
 </style>

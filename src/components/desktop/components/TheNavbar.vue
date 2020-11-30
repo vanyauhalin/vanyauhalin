@@ -29,11 +29,44 @@
 </template>
 
 <script>
+import { padding, line } from 'scripts/variables'
+
 import navbar from 'mixins/navbar'
 
 export default {
   name: 'TheNavbar',
-  mixins: [navbar]
+  mixins: [navbar],
+  data() {
+    return {
+      border: true,
+      offset: [{
+        top: padding.d,
+        bottom: line.minified
+      }, {
+        bottom: padding.d
+      }],
+      scrollable: {
+        class: 'app__main'
+      }
+    }
+  },
+  mounted() {
+    this.setScrollable()
+    this.setItems()
+    this.setItemsOffset()
+    this.setItemsHg()
+    this.setItemsActive()
+    this.setScrollOptions()
+  },
+  methods: {
+    setScrollable() {
+      this.scrollable = {
+        ...JSON.parse(JSON.stringify(this.scrollable)),
+        el: document.getElementsByClassName(this.scrollable.class)[0],
+        container: `.${this.scrollable.class}`
+      }
+    }
+  }
 }
 </script>
 
