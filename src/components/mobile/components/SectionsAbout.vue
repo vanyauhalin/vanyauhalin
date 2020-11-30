@@ -49,21 +49,21 @@ export default {
 .about__image {
   position: relative;
   z-index: 1;
+
   display: flex;
+  overflow: hidden;
   align-items: center;
 
   min-width: 125px;
   margin-right: $mg-2 * 2;
 
   &:before {
-    $image-blur: 1.2px;
-
     position: absolute;
     z-index: -1;
-    top: $image-blur;
-    right: $image-blur;
-    bottom: $image-blur;
-    left: $image-blur;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
     content: '';
 
@@ -71,8 +71,7 @@ export default {
     background-position: center;
     background-size: cover;
 
-    backdrop-filter: blur(100802px);
-    filter: blur($image-blur);
+    filter: blur(1.2px);
   }
 }
 
