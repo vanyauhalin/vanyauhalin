@@ -97,7 +97,6 @@ export default {
 }
 
 .d-app__main {
-  overflow-x: hidden;
   overflow-y: overlay;
 
   box-sizing: border-box;

@@ -67,6 +67,9 @@ export default {
      */
 
     setContainer() {
+      // Это не работает. Шрифт меняетс после рендера и выходит на новые строки.
+      // И можно было через child всё сделать, без data.
+
       const parent = this.$el.parentElement
       const ctx = { selector: 'data-num' }
       const { container } = this

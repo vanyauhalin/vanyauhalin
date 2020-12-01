@@ -67,7 +67,7 @@ export default {
 
     content: '';
 
-    background-image: url('~images/avatar.jpg');
+    background-image: url('~images/avatar-400.jpg');
     background-position: center;
     background-size: cover;
 

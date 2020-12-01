@@ -4,7 +4,27 @@
  * =============================================================================
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+@font-face {
+  font-family: 'Montserrat';
+  src: url('~fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('~fonts/Montserrat-Medium.woff') format('woff'),
+    url('~fonts/Montserrat-Medium.ttf') format('truetype'),
+    url('~fonts/Montserrat-Medium.svg#Montserrat-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('~fonts/Montserrat-SemiBold.woff2') format('woff2'),
+    url('~fonts/Montserrat-SemiBold.woff') format('woff'),
+    url('~fonts/Montserrat-SemiBold.ttf') format('truetype'),
+    url('~fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   font-family: 'Montserrat', sans-serif;

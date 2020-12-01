@@ -17,6 +17,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
+        fonts: root.assets('fonts'),
         images: root.assets('images'),
         scripts: root.assets('scripts'),
         styles: root.assets('styles'),

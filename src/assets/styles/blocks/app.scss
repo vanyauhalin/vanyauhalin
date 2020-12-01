@@ -5,5 +5,7 @@
  */
 
 .app__main {
+  overflow-x: hidden;
+
   background-color: var(--cl-neutral-01);
 }
